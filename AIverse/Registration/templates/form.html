@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        label { font-weight: bold; display: block; margin-top: 10px; }
+        input, select { width: 100%; padding: 8px; margin-top: 5px; }
+        .theme-box { width: 100%; }
+        .member { margin-top: 15px; padding: 10px; border: 1px solid #ddd; position: relative; }
+        .remove-btn { position: absolute; top: 5px; right: 5px; background: red; color: white; border: none; padding: 5px; cursor: pointer; }
+        .hidden { display: none; }
+        .btn { background: #28a745; color: white; padding: 10px; cursor: pointer; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Event Registration</h2>
+
+        <form id="registrationForm" method="POST">{% csrf_token %}
+            <label for="event">Select Event:</label>
+            <select id="event" name="event" onchange="updateThemes()">
+                <option value="Dreambrush">Dreambrush</option>
+                <option value="AIVERSE">AIVERSE</option>
+            </select>
+
+            <h3>Team Leader Details</h3>
+            <label>Name:</label> <input type="text" name="leader_name" required>
+            <label>Year:</label> <input type="text" name="leader_year" required>
+            <label>College:</label> <input type="text" name="leader_college" required>
+            <label>Mobile No.:</label> <input type="text" name="leader_mobile" required>
+            <label>Email ID:</label> <input type="email" name="leader_email" required>
+            <label>Gender:</label>
+            <select name="leader_gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <label>Team Name:</label> <input type="text" name="team_name" required>
+            <label>Theme:</label>
+            <select name="theme" id="theme" class="theme-box">
+            </select>
+
+            <h3>Team Members</h3>
+            <div id="members"></div>
+            <button type="button" onclick="addMember()">Add Team Member</button>
+
+            <h3>Total Amount: ₹<span id="totalAmount">150</span></h3>
+            <button type="submit" class="btn">Pay Amount</button>
+        </form>
+    </div>
+
+    <script>
+        let memberCount = 1;
+        let prices = { "Dreambrush": 150, "AIVERSE": 200 };
+        let themes = {
+            "Dreambrush": [
+                "Sustainable Infrastructure",
+                "3D Printing in Construction",
+                "Renewable Energy Systems",
+                "Electric Vehicles & Future Mobility",
+                "Wireless Power Transfer",
+                "Quantum Computing in Electrical Engineering",
+                "AI-Driven Semiconductor Manufacturing"
+            ],
+            "AIVERSE": ["Game 1", "Game 2"]
+        };
+
+        function updateThemes() {
+            let event = document.getElementById("event").value;
+            let themeSelect = document.getElementById("theme");
+
+            themeSelect.innerHTML = "";
+
+            themes[event].forEach(theme => {
+                let option = document.createElement("option");
+                option.value = theme;
+                option.innerText = theme;
+                themeSelect.appendChild(option);
+            });
+            updateAmount();
+        }
+
+        function addMember() {
+            if (memberCount >= 4) return alert("Maximum 4 members allowed (including leader).");
+            memberCount++;
+
+            let div = document.createElement("div");
+            div.classList.add("member");
+            div.innerHTML = `
+                <button type="button" class="remove-btn" onclick="removeMember(this)">X</button>
+                <h4>Member ${memberCount}</h4>
+                <label>Name:</label> <input type="text" name="member_${memberCount}_name" required>
+                <label>Year:</label> <input type="text" name="member_${memberCount}_year" required>
+                <label>College:</label> <input type="text" name="member_${memberCount}_college" required>
+                <label>Mobile No.:</label> <input type="text" name="member_${memberCount}_mobile" required>
+                <label>Email ID:</label> <input type="email" name="member_${memberCount}_email" required>
+                <label>Gender:</label>
+                <select name="member_${memberCount}_gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            `;
+            document.getElementById("members").appendChild(div);
+            updateAmount();
+        }
+
+        function removeMember(button) {
+            button.parentElement.remove();
+            memberCount--;
+
+            let members = document.querySelectorAll(".member");
+            members.forEach((member, index) => {
+                member.querySelector("h4").innerText = `Member ${index + 2}`;
+            });
+
+            updateAmount();
+        }
+
+        function updateAmount() {
+            let event = document.getElementById("event").value;
+            document.getElementById("totalAmount").innerText = memberCount * prices[event];
+        }
+
+<!--        document.getElementById("registrationForm").addEventListener("submit", function(event) {-->
+<!--            event.preventDefault();-->
+<!--            alert("Redirecting to payment gateway...");-->
+<!--            window.location.href = "/"; // Replace with actual payment link-->
+<!--        });-->
+
+        updateThemes();
+    </script>
+</body>
+</html>
