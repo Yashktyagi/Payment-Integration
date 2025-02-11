@@ -1,25 +1,18 @@
-# Ignore Python cache & compiled files
+# Django & Python related
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
+db.sqlite3
+*.log
 
-# Ignore Django migrations
-*/migrations/*
-
-# Ignore virtual environments
+# Virtual Environment
 venv/
 env/
 
-# Ignore sensitive data
-*.sqlite3
-*.log
-.env
+# Secrets & Credentials
+*.env
+settings.py
 
-# Ignore static & media files (optional)
-staticfiles/
-media/
-
-# Ignore IDE & system files
+# VS Code
 .vscode/
-.idea/
-.DS_Store
