@@ -1,131 +1,3260 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Registration</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .container { max-width: 600px; margin: auto; }
-        label { font-weight: bold; display: block; margin-top: 10px; }
-        input, select { width: 100%; padding: 8px; margin-top: 5px; }
-        .theme-box { width: 100%; }
-        .member { margin-top: 15px; padding: 10px; border: 1px solid #ddd; position: relative; }
-        .remove-btn { position: absolute; top: 5px; right: 5px; background: red; color: white; border: none; padding: 5px; cursor: pointer; }
-        .hidden { display: none; }
-        .btn { background: #28a745; color: white; padding: 10px; cursor: pointer; text-align: center; }
-    </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+  <title>AI Verse</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="{% static 'hero-slider-1.jpg' %}">
+  <link rel="preload" as="image" href="{% static 'hero-slider-2.jpg' %}">
+  <link rel="preload" as="image" href="{% static 'hero-slider-3.jpg' %}">
+
+  <style>
+
+
+:root {
+
+
+--gold-crayola: hsla(0, 0%, 100%, 0.788);
+--quick-silver: hsla(0, 0%, 65%, 1);
+--davys-grey: hsla(30, 3%, 34%, 1);
+--smoky-black-1: hsla(40, 12%, 5%, 1);
+--smoky-black-2: hsla(30, 8%, 5%, 1);
+--smoky-black-3: hsla(0, 3%, 7%, 1);
+--eerie-black-1: hsla(210, 4%, 9%, 1);
+--eerie-black-2: hsla(210, 4%, 11%, 1);
+--eerie-black-3: hsla(180, 2%, 8%, 1);
+--eerie-black-4: hsla(0, 0%, 13%, 1);
+--white: hsla(0, 0%, 100%, 1);
+--white-alpha-20: hsla(0, 0%, 100%, 0.2);
+--white-alpha-10: hsla(0, 0%, 100%, 0.1);
+--black: hsla(0, 0%, 0%, 1);
+--black-alpha-80: hsla(0, 0%, 0%, 0.8);
+--black-alpha-15: hsla(0, 0%, 0%, 0.15);
+
+
+--loading-text-gradient: linear-gradient(90deg, transparent 0% 16.66%, var(--smoky-black-3) 33.33% 50%,  transparent 66.66% 75%);
+--gradient-1: linear-gradient(to top,hsla(0, 0%, 0%, 0.9),hsla(0, 0%, 0%, 0.7),transparent);
+
+
+/* font-family */
+--fontFamily-forum: 'Forum', cursive;
+--fontFamily-dm_sans: 'DM Sans', sans-serif;
+
+/* font-size */
+--fontSize-display-1: calc(1.3rem + 6.7vw);
+--fontSize-headline-1: calc(2rem + 2.5vw);
+--fontSize-headline-2: calc(1.3rem + 2.4vw);
+--fontSize-title-1: calc(1.6rem + 1.2vw);
+--fontSize-title-2: 2.2rem;
+--fontSize-title-3: 2.1rem;
+--fontSize-title-4: calc(1.6rem + 1.2vw);
+--fontSize-body-1: 2.4rem;
+--fontSize-body-2: 1.6rem;
+--fontSize-body-3: 1.8rem;
+--fontSize-body-4: 1.6rem;
+--fontSize-label-1: 1.4rem;
+--fontSize-label-2: 1.2rem;
+
+/* font-weight */
+--weight-regular: 400;
+--weight-bold: 700;
+
+/* line-height */
+--lineHeight-1: 1em;
+--lineHeight-2: 1.2em;
+--lineHeight-3: 1.5em;
+--lineHeight-4: 1.6em;
+--lineHeight-5: 1.85em;
+--lineHeight-6: 1.4em;
+
+/* letter-spacing */
+--letterSpacing-1: 0.15em;
+--letterSpacing-2: 0.4em;
+--letterSpacing-3: 0.2em;
+--letterSpacing-4: 0.3em;
+--letterSpacing-5: 3px;
+
+
+--section-space: 70px;
+
+--shadow-1: 0px 0px 25px 0px hsla(0, 0%, 0%, 0.25);
+
+
+--radius-24: 24px;
+--radius-circle: 50%;
+
+--transition-1: 250ms ease;
+--transition-2: 500ms ease;
+--transition-3: 1000ms ease;
+
+}
+*,
+*::before,
+*::after {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+li { list-style: none; }
+
+a,
+img,
+data,
+span,
+input,
+button,
+select,
+ion-icon,
+textarea { display: block; }
+
+a {
+color: inherit;
+text-decoration: none;
+}
+
+img { height: auto; }
+
+input,
+button,
+select,
+textarea {
+background: none;
+border: none;
+font: inherit;
+}
+
+input,
+select,
+textarea {
+width: 100%;
+outline: none;
+}
+
+button { cursor: pointer; }
+
+address { font-style: normal; }
+
+html {
+font-size: 10px;
+scroll-behavior: smooth;
+}
+
+body {
+background-color: var(--eerie-black-1);
+color: var(--white);
+font-family: var(--fontFamily-dm_sans);
+font-size: var(--fontSize-body-4);
+font-weight: var(--weight-regular);
+line-height: var(--lineHeight-5);
+overflow: hidden;
+height: 300vh;
+}
+
+body.loaded { overflow: overlay; }
+
+body.nav-active { overflow: hidden; }
+
+::-webkit-scrollbar { width: 5px; }
+
+::-webkit-scrollbar-track { background-color: transparent; }
+
+::-webkit-scrollbar-thumb { background-color: var(--gold-crayola); }
+
+.display-1,
+.headline-1,
+.headline-2,
+.title-1,
+.title-2,
+.title-3,
+.title-4 {
+color: var(--white);
+font-family: var(--fontFamily-forum);
+font-weight: var(--weight-regular);
+line-height: var(--lineHeight-2);
+}
+
+.display-1 {
+font-size: 40px;
+line-height: var(--lineHeight-1);
+}
+
+.headline-1 { font-size: var(--fontSize-headline-1); }
+
+.headline-2 {
+font-size: var(--fontSize-headline-2);
+line-height: var(--lineHeight-6);
+}
+
+.title-1 { font-size: var(--fontSize-title-1); }
+
+.title-2 { font-size: var(--fontSize-title-2); }
+
+.title-3 { font-size: var(--fontSize-title-3); }
+
+.title-4 { font-size: var(--fontSize-title-4); }
+
+.body-1 {
+font-size: var(--fontSize-body-1);
+line-height: var(--lineHeight-6);
+}
+
+.body-2 {
+font-size: var(--fontSize-body-2);
+line-height: var(--lineHeight-4);
+}
+
+.body-3 { font-size: var(--fontSize-body-3); }
+
+.body-4 { font-size: var(--fontSize-body-4); }
+
+.label-1 { font-size: var(--fontSize-label-1); }
+
+.label-2 { font-size: var(--fontSize-label-2); }
+
+.container { padding-inline: 16px; }
+
+.separator {
+width: 8px;
+height: 8px;
+border: 1px solid var(--gold-crayola);
+transform: rotate(45deg);
+}
+
+.contact-label { font-weight: var(--weight-bold); }
+
+.contact-number {
+color: var(--gold-crayola);
+max-width: max-content;
+margin-inline: auto;
+}
+
+.hover-underline {
+position: relative;
+max-width: max-content;
+}
+
+.hover-underline::after {
+content: "";
+position: absolute;
+left: 0;
+bottom: 0;
+width: 100%;
+height: 5px;
+border-block: 1px solid var(--gold-crayola);
+transform: scaleX(0.2);
+opacity: 0;
+transition: var(--transition-2);
+}
+
+.hover-underline:is(:hover, :focus-visible)::after {
+transform: scaleX(1);
+opacity: 1;
+}
+
+.contact-number::after { bottom: -5px; }
+
+.text-center { text-align: center; }
+
+.img-cover {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.section-subtitle {
+position: relative;
+color: var(--gold-crayola);
+font-weight: var(--weight-bold);
+text-transform: uppercase;
+letter-spacing: var(--letterSpacing-2);
+margin-block-end: 12px;
+}
+
+.section-subtitle::after {
+content: url('{% static 'separator.svg' %}');
+display: block;
+width: 100px;
+margin-inline: auto;
+margin-block-start: 5px;
+}
+
+.btn {
+position: relative;
+color: var(--gold-crayola);
+font-size: var(--fontSize-label-2);
+font-weight: var(--weight-bold);
+text-transform: uppercase;
+letter-spacing: var(--letterSpacing-5);
+max-width: max-content;
+border: 2px solid var(--gold-crayola);
+padding: 12px 45px;
+overflow: hidden;
+z-index: 1;
+}
+
+.btn::before {
+content: "";
+position: absolute;
+bottom: 100%;
+left: 50%;
+transform: translateX(-50%);
+width: 200%;
+height: 200%;
+border-radius: var(--radius-circle);
+background-color: var(--gold-crayola);
+transition: var(--transition-2);
+z-index: -1;
+}
+
+.btn .text { transition: var(--transition-1); }
+
+.btn .text-2 {
+position: absolute;
+top: 100%;
+left: 50%;
+transform: translateX(-50%);
+min-width: max-content;
+color: var(--smoky-black-1);
+}
+
+.btn:is(:hover, :focus-visible)::before { bottom: -50%; }
+
+.btn:is(:hover, :focus-visible) .text-1 { transform: translateY(-40px); }
+
+.btn:is(:hover, :focus-visible) .text-2 {
+top: 50%;
+transform: translate(-50%, -50%);
+}
+
+.btn-secondary {
+background-color: var(--gold-crayola);
+color: var(--black);
+}
+
+.btn-secondary::before { background-color: var(--smoky-black-1); }
+
+.btn-secondary .text-2 { color: var(--white); }
+
+.has-before,
+.has-after {
+position: relative;
+z-index: 1;
+}
+
+.has-before::before,
+.has-after::after {
+content: "";
+position: absolute;
+}
+
+.section {
+position: relative;
+padding-block: var(--section-space);
+overflow: hidden;
+z-index: 1;
+}
+
+.bg-black-10 { background-color: var(--smoky-black-2); }
+
+.grid-list {
+display: grid;
+gap: 40px;
+}
+
+.hover\:shine { position: relative; }
+
+.hover\:shine::after {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 50%;
+height: 100%;
+background-image: linear-gradient(to right, transparent 0%, #fff6 100%);
+transform: skewX(-0.08turn) translateX(-180%);
+}
+
+.hover\:shine:is(:hover, :focus-within)::after {
+transform: skewX(-0.08turn) translateX(275%);
+transition: var(--transition-3);
+}
+
+.img-holder {
+aspect-ratio: var(--width) / var(--height);
+overflow: hidden;
+background-color: var(--eerie-black-4);
+}
+
+.btn-text {
+color: var(--gold-crayola);
+padding-block-end: 4px;
+margin-inline: auto;
+text-transform: uppercase;
+letter-spacing: var(--letterSpacing-3);
+font-weight: var(--weight-bold);
+transition: var(--transition-1);
+}
+
+.btn-text:is(:hover, :focus-visible) { color: var(--white); }
+
+.shape {
+display: none;
+position: absolute;
+max-width: max-content;
+z-index: -1;
+}
+
+.w-100 { width: 100%; }
+
+.move-anim { animation: move 5s linear infinite; }
+
+@keyframes move {
+0%,
+100% { transform: translateY(0); }
+
+50% { transform: translateY(30px); }
+}
+
+.has-bg-image {
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+}
+
+.input-field {
+background-color: var(--eerie-black-2);
+color: var(--white);
+height: 56px;
+padding: 10px 20px;
+border: 1px solid var(--white-alpha-10);
+margin-block-end: 20px;
+outline: none;
+transition: border-color var(--transition-2);
+}
+
+.input-field::placeholder { color: inherit; }
+
+.input-field:focus { border-color: var(--gold-crayola); }
+
+.icon-wrapper {
+position: relative;
+margin-block-end: 20px;
+}
+
+.icon-wrapper .input-field {
+margin-block-end: 0;
+padding-inline-start: 40px;
+appearance: none;
+cursor: pointer;
+}
+
+.icon-wrapper ion-icon {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+font-size: 1.4rem;
+--ionicon-stroke-width: 50px;
+pointer-events: none;
+}
+
+.icon-wrapper ion-icon:first-child { left: 15px; }
+
+.icon-wrapper ion-icon:last-child { right: 10px; }
+.preload {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: black;
+z-index: 10;
+display: grid;
+place-content: center;
+justify-items: center;
+transition: var(--transition-2);
+}
+
+.preload > * { transition: var(--transition-1); }
+
+.preload.loaded > * { opacity: 0; }
+
+.preload.loaded {
+transition-delay: 300ms;
+transform: translateY(100%);
+}
+
+.circle {
+width: 112px;
+height: 112px;
+border-radius: var(--radius-circle);
+border: 3px solid var(--white);
+border-block-start-color: var(--smoky-black-3);
+margin-block-end: 45px;
+animation: rotate360 1s linear infinite;
+}
+
+@keyframes rotate360 {
+0% { transform: rotate(0); }
+100% { transform: rotate(1turn); }
+}
+
+.preload .text {
+background-image: var(--loading-text-gradient);
+background-size: 500%;
+font-size: calc(2rem + 3vw);
+font-weight: var(--weight-bold);
+line-height: 1em;
+text-transform: uppercase;
+letter-spacing: 16px;
+padding-inline-start: 16px;
+color: white; /* Changed text color to white */
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-stroke: 0.5px var(--eerie-black-3);
+animation: loadingText linear 2s infinite;
+}
+
+
+@keyframes loadingText {
+0% { background-position: 100%; }
+100% { background-position: 0%; }
+}
+
+.topbar { display: none; }
+
+
+.header .btn { display: none; }
+
+.header {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+background-color: transparent;
+padding-block: 40px;
+z-index: 4;
+border-block-end: 1px solid transparent;
+transition: var(--transition-1);
+}
+
+.header.active {
+padding-block: 20px;
+background-color: var(--eerie-black-4);
+border-color: var(--black-alpha-15);
+}
+
+.header.hide {
+transform: translateY(-100%);
+transition-delay: 250ms;
+}
+
+.header .container {
+padding-inline: 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 8px;
+}
+
+.nav-open-btn {
+padding: 12px;
+padding-inline-end: 0;
+}
+
+.nav-open-btn .line {
+width: 30px;
+height: 2px;
+background-color: var(--white);
+margin-block: 4px;
+transform-origin: left;
+animation: registerBtn 400ms ease-in-out alternate infinite;
+}
+
+@keyframes registerBtn {
+0% { transform: scaleX(1); }
+100% { transform: scaleX(0.5); }
+}
+
+.nav-open-btn .line-2 { animation-delay: 150ms; }
+
+.nav-open-btn .line-3 { animation-delay: 300ms; }
+
+.navbar {
+position: fixed;
+background-color: var(--smoky-black-1);
+top: 0;
+left: -360px;
+bottom: 0;
+max-width: 360px;
+width: 100%;
+padding-inline: 30px;
+padding-block-end: 50px;
+overflow-y: auto;
+visibility: hidden;
+z-index: 2;
+transition: var(--transition-2);
+}
+
+.navbar.active {
+visibility: visible;
+transform: translateX(360px);
+}
+
+.navbar .close-btn {
+color: var(--white);
+border: 1px solid currentColor;
+padding: 4px;
+border-radius: var(--radius-circle);
+margin-inline-start: auto;
+margin-block: 30px 20px;
+}
+
+.navbar .close-btn ion-icon { --ionicon-stroke-width: 40px; }
+
+.navbar .close-btn:is(:hover, :focus-visible) { color: var(--gold-crayola); }
+
+.navbar .logo {
+max-width: max-content;
+margin-inline: auto;
+margin-block-end: 60px;
+}
+
+.navbar-list {
+border-block-end: 1px solid var(--white-alpha-20);
+margin-block-end: 100px;
+}
+
+.navbar-item { border-block-start: 1px solid var(--white-alpha-20); }
+
+.navbar-link {
+position: relative;
+font-size: var(--fontSize-label-2);
+text-transform: uppercase;
+padding-block: 10px;
+max-width: unset;
+}
+
+.navbar-link::after { display: none; }
+
+.navbar-link .span { transition: var(--transition-1); }
+
+.navbar-link:is(:hover, :focus-visible, .active) .span {
+color: var(--gold-crayola);
+transform: translateX(20px);
+}
+
+.navbar-link .separator {
+position: absolute;
+top: 50%;
+left: 0;
+transform: translateY(-50%) rotate(45deg);
+opacity: 0;
+transition: var(--transition-1);
+}
+
+.navbar-link:is(:hover, :focus-visible, .active) .separator { opacity: 1; }
+
+.navbar-title { margin-block-end: 15px; }
+
+.navbar-text { margin-block: 10px; }
+
+.navbar .body-4 { color: var(--quick-silver); }
+
+.sidebar-link { transition: var(--transition-1); }
+
+.sidebar-link:is(:hover, :focus-visible) { color: var(--gold-crayola); }
+
+.navbar .text-center .separator {
+margin-block: 30px;
+margin-inline: auto;
+}
+
+.navbar .contact-label { margin-block-end: 10px; }
+
+.navbar::-webkit-scrollbar-thumb { background-color: var(--white-alpha-10); }
+
+.overlay {
+position: fixed;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+background-color: var(--black-alpha-80);
+opacity: 0;
+pointer-events: none;
+transition: var(--transition-2);
+z-index: 1;
+}
+
+.overlay.active {
+opacity: 1;
+pointer-events: all;
+}
+
+/* Dropdown Styling */
+.navbar-item {
+position: relative;
+}
+
+.dropdown-menu {
+display: none;
+position: absolute;
+background: rgba(51, 51, 51, 0.648);
+min-width: 150px;
+top: 100%; /* Positions it directly below */
+left: 50%; /* Centers it below the parent */
+transform: translateX(-50%); /* Adjusts horizontal centering */
+z-index: 1000;
+border-radius: 5px;
+box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Show dropdown on hover */
+.navbar-item:hover .dropdown-menu {
+display: block;
+}
+
+/* Dropdown Items */
+.dropdown-menu li {
+list-style: none;
+}
+
+.dropdown-menu a {
+display: block;
+padding: 10px 15px;
+color: white;
+text-decoration: none;
+transition: 0.3s;
+text-align: center;
+font-size: 1.3rem;
+}
+
+.dropdown-menu a:hover {
+background: #555;
+}
+
+/* Dropdown Arrow Alignment */
+.dropdown-toggle {
+display: flex;
+align-items: center;
+}
+
+.dropdown-toggle ion-icon {
+margin-left: 5px;
+transition: 0.3s;
+}
+
+/* Rotate arrow when hovered */
+.navbar-item:hover .dropdown-toggle ion-icon {
+transform: rotate(180deg);
+}
+
+
+.hero .slider-btn { display: none; }
+
+.hero {
+position: relative;
+padding-block: 120px;
+min-height: 100vh;
+overflow: hidden;
+z-index: 1;
+}
+
+.hero .slider-item {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 100%;
+height: 100%;
+display: grid;
+place-content: center;
+padding-block-start: 100px;
+opacity: 0;
+visibility: hidden;
+transition: var(--transition-3);
+z-index: 1;
+}
+
+.hero .slider-item.active {
+opacity: 1;
+visibility: visible;
+}
+
+.hero .slider-bg {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+transform: scale(1.15);
+pointer-events: none;
+user-select: none;
+z-index: -1;
+}
+
+.hero .slider-item.active .slider-bg {
+animation: smoothScale 7s linear forwards;
+}
+
+@keyframes smoothScale {
+0% { transform: scale(1); }
+100% { transform: scale(1.15); }
+}
+
+.hero .section-subtitle::after { margin-block: 14px 20px; }
+
+.hero-text { margin-block: 10px 40px; }
+
+.hero .btn { margin-inline: auto; }
+
+.hero-btn {
+position: absolute;
+bottom: 15px;
+right: 15px;
+z-index: 2;
+background-color: var(--gold-crayola);
+width: 110px;
+height: 110px;
+padding: 12px;
+transform: scale(0.6);
+}
+
+.hero-btn img {
+margin-inline: auto;
+margin-block-end: 6px;
+}
+
+.hero-btn .span {
+color: var(--black);
+font-weight: var(--weight-bold);
+text-transform: uppercase;
+letter-spacing: var(--letterSpacing-1);
+line-height: var(--lineHeight-3);
+}
+
+.hero-btn::after {
+inset: 0;
+border: 1px solid var(--gold-crayola);
+animation: rotate360 15s linear infinite;
+}
+
+.slider-reveal {
+transform: translateY(30px);
+opacity: 0;
+}
+
+.hero .slider-item.active .slider-reveal {
+animation: sliderReveal 1s ease forwards;
+}
+
+@keyframes sliderReveal {
+0% {
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+100% {
+  transform: translateY(0);
+  opacity: 1;
+}
+}
+
+.hero .slider-item.active .section-subtitle { animation-delay: 500ms; }
+
+.hero .slider-item.active .hero-title { animation-delay: 1000ms; }
+
+.hero .slider-item.active .hero-text { animation-delay: 1.5s; }
+
+.hero .slider-item.active .btn { animation-delay: 2s; }
+
+
+.service .section-title { margin-block-end: 16px; }
+
+.service .section-text { margin-block-end: 40px; }
+
+.service-card { overflow: hidden; }
+
+.service-card .has-before {
+padding-block: 30px;
+margin-block-end: 26px;
+z-index: 1;
+}
+
+.service-card .has-before::before {
+top: 0;
+left: 50%;
+transform: translateX(-50%);
+width: 140px;
+height: 100%;
+background-position: center;
+background-size: cover;
+background-repeat: repeat;
+transition: var(--transition-2);
+transition-delay: 0;
+z-index: -1;
+will-change: transform;
+}
+
+.service-card:is(:hover, :focus-within) .has-before::before {
+transform: rotateY(0.5turn) translateX(50%);
+transition-delay: 300ms;
+}
+
+.service-card .card-banner { transition: var(--transition-2); }
+
+.service-card:is(:hover, :focus-within) .card-banner { transform: scale(1.05); }
+
+.service .card-title { margin-block-end: 12px; }
+
+
+.event-img-cover {
+width: 50%;
+height: 50%;
+align-items: center;
+justify-content: center;
+align-content: center;
+
+}
+
+.countdown-timer {
+font-size: 1.3rem;
+font-weight: bold;
+margin-top: 20px;
+display: flex;
+justify-content: center;
+gap: 15px;
+color: #ff5733;
+animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+0% { transform: scale(1); }
+100% { transform: scale(1.1); }
+}
+
+.countdown-timer span {
+background: #222;
+color: #fff;
+padding: 10px 15px;
+border-radius: 5px;
+}
+
+/* Reduce size on smaller screens */
+@media (max-width: 768px) {
+.countdown-timer {
+  font-size: 0.9rem; /* Decrease font size */
+  gap: 8px; /* Reduce space between elements */
+}
+
+.countdown-timer span {
+  padding: 5px 10px; /* Reduce padding */
+  font-size: 0.8rem; /* Decrease font size of numbers */
+}
+}
+
+@media (max-width: 480px) {
+.countdown-timer {
+  font-size: 0.8rem;
+  gap: 5px;
+  flex-wrap: wrap; /* Allow items to wrap on very small screens */
+}
+
+.countdown-timer span {
+  padding: 5px 8px;
+  font-size: 0.7rem;
+}
+}
+
+
+.games-container {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 50px;
+margin-top: 40px;
+position: relative;
+}
+
+/* Game Categories */
+.game-category {
+width: 45%;
+text-align: left;
+}
+
+.category-title {
+font-size: 1.8rem;
+font-weight: bold;
+color: rgb(255, 255, 255);
+margin-bottom: 15px;
+text-transform: uppercase;
+}
+
+/* Game Cards */
+.game-card {
+background: rgba(0, 0, 0, 0.63);
+padding: 15px;
+border-radius: 8px;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+margin-bottom: 15px;
+transition: transform 0.3s ease-in-out;
+}
+
+.game-card:hover {
+transform: scale(1.05);
+}
+
+.game-title {
+font-size: 1.6rem;
+font-weight: bold;
+color: rgb(255, 255, 255);
+}
+
+.game-desc {
+font-size: 1.4rem;
+color: rgb(255, 255, 255);
+}
+
+/* Centering the Participants Section */
+.participants {
+text-align: center;
+padding: 50px 0;
+}
+
+/* Centering the table */
+.participants table {
+margin: 0 auto; /* Centers the table */
+width: 80%; /* Adjust width as needed */
+max-width: 800px;
+border-collapse: collapse;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Table Header Styling */
+.participants th {
+background-color: #343a40; /* Dark header */
+color: white;
+padding: 12px;
+font-size: 18px;
+text-transform: uppercase;
+}
+
+/* Table Row & Cell Styling */
+.participants td {
+padding: 10px;
+font-size: 16px;
+border-bottom: 1px solid #ddd;
+color: rgb(255, 255, 255);
+background-color: #222;
+}
+
+/* Alternating Row Background */
+.participants tbody tr:nth-child(even) {
+background-color: #f2f2f2;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+.participants table {
+  width: 100%; /* Full width for small screens */
+}
+.participants th, .participants td {
+  font-size: 14px; /* Smaller text */
+  padding: 8px;
+}
+}
+
+
+/* Hide the second image (inside special-dish-content) by default */
+.special-dish-content .special-dish-banner {
+display: none;
+}
+
+/* Show the second image and hide the first image on smaller screens */
+@media (max-width: 920px) {
+.special-dish .special-dish-banner {
+  display: none; /* Hide the first image */
+}
+
+.special-dish-content .special-dish-banner {
+  display: block; /* Show the second image */
+}
+}
+
+
+.special-dish-content { padding-block: 70px; }
+
+.special-dish .abs-img {
+margin-inline: auto;
+margin-block-end: 12px;
+}
+
+.special-dish .section-text { margin-block: 16px 40px; }
+
+.special-dish-content .wrapper {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 20px;
+margin-block-end: 40px;
+}
+
+.special-dish-content .del {
+text-decoration: none;
+color: var(--davys-grey);
+}
+
+.special-dish-content .span { color: var(--gold-crayola); }
+
+.special-dish .btn { margin-inline: auto; }
+
+
+.timeline {
+position: relative;
+max-width: 800px;
+margin: auto;
+padding-top: 20px;
+}
+
+/* Centered Items */
+.timeline-item.center {
+display: flex;
+justify-content: center;
+text-align: center;
+}
+
+/* Timeline Line */
+.timeline-line {
+width: 2px;
+height: 40px;
+background-color: rgb(255, 255, 255);
+margin: 0 auto;
+}
+
+/* Card Styling */
+.register-card {
+background: rgba(0, 0, 0, 0.751);
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+width: 55%;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+.timeline-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.register-card {
+    width: 80%;
+}
+}
+
+
+.testi {
+padding-block-end: 340px;
+position: static;
+}
+
+.testi .quote {
+font-size: 7rem;
+font-family: var(--fontFamily-forum);
+line-height: 0.7em;
+}
+
+.testi .wrapper {
+display: flex;
+justify-content: center;
+gap: 2px;
+margin-block: 40px 50px;
+}
+
+.testi .separator { animation: rotate360 15s linear infinite; }
+
+.profile .img {
+margin-inline: auto;
+border-radius: var(--radius-circle);
+margin-block-end: 15px;
+}
+
+.testi .profile-name {
+color: var(--gold-crayola);
+font-weight: var(--weight-bold);
+text-transform: uppercase;
+letter-spacing: var(--letterSpacing-3);
+}
+
+
+.reservation-form { margin-block-start: -270px; }
+
+.form-text { margin-block-end: 40px; }
+
+.form-text .link {
+display: inline;
+color: var(--gold-crayola);
+}
+
+.form-right .headline-1 { margin-block-end: 40px; }
+
+.form-right .contact-label { margin-block-end: 5px; }
+
+.form-right .separator { margin: 20px auto; }
+
+.form-right .body-4 {
+color: var(--quick-silver);
+line-height: var(--lineHeight-3);
+}
+
+.form-right .body-4:not(:last-child) { margin-block-end: 25px; }
+
+.form-left,
+.form-right { padding: 40px 20px 30px; }
+
+.input-field[type="date"] {
+text-transform: uppercase;
+padding-inline-end: 10px;
+}
+
+.input-field[type="date"]::-webkit-calendar-picker-indicator { opacity: 0; }
+
+textarea.input-field {
+resize: none;
+height: 140px;
+padding-block: 20px;
+line-height: var(--lineHeight-1);
+}
+
+.form-left .btn {
+max-width: 100%;
+width: 100%;
+}
+
+.form-right {
+background-repeat: repeat;
+background-position: top left;
+}
+
+
+.features .section-title { margin-block-end: 40px; }
+
+.feature-card { padding: 30px 20px 40px; }
+
+.feature-item:nth-child(2n+1) .feature-card { background-color: var(--eerie-black-3); }
+
+.feature-item:nth-child(2n) .feature-card { background-color: var(--smoky-black-3); }
+
+.feature-card .card-icon {
+max-width: max-content;
+margin-inline: auto;
+transition: var(--transition-2);
+}
+
+.feature-card:hover .card-icon { transform: scale(-1) rotate(180deg); }
+
+.feature-card .card-title { margin-block: 20px; }
+
+.feature-card .card-text {
+color: var(--quick-silver);
+line-height: var(--lineHeight-6);
+}
+
+
+.event .section-title { margin-block-end: 40px; }
+
+.event-card {
+position: relative;
+overflow: hidden;
+}
+
+.event-card .card-content {
+background-image: var(--gradient-1);
+position: absolute;
+bottom: 0;
+width: 100%;
+padding: 35px 35px 25px;
+}
+
+.event-card .publish-date {
+position: absolute;
+top: 30px;
+left: 25px;
+padding: 5px 10px;
+color: var(--gold-crayola);
+background-color: var(--black);
+font-weight: var(--weight-bold);
+letter-spacing: var(--letterSpacing-1);
+line-height: 14px;
+}
+
+.event-card .card-subtitle {
+color: var(--gold-crayola);
+text-transform: uppercase;
+font-weight: var(--weight-bold);
+letter-spacing: var(--letterSpacing-2);
+margin-block-end: 5px;
+}
+
+.event-card .card-banner .img-cover { transition: var(--transition-2); }
+
+.event-card:is(:hover, :focus-within) .img-cover { transform: scale(1.05); }
+
+.event .btn {
+margin-inline: auto;
+margin-block-start: 40px;
+}
+
+
+.footer-top { margin-block-end: 70px; }
+
+
+
+.footer-brand::before { left: 0; }
+
+.footer-brand::after { right: 0; }
+
+.footer-brand .logo {
+max-width: max-content;
+margin-inline: auto;
+margin-block-end: 40px;
+}
+
+.footer-brand :is(.body-4, .label-1) {
+line-height: var(--lineHeight-3);
+}
+
+.footer-brand .contact-link {
+margin-block: 6px;
+transition: var(--transition-1);
+}
+
+.footer-brand .contact-link:is(:hover, :focus-visible) { color: var(--gold-crayola); }
+
+.footer-brand .wrapper {
+display: flex;
+justify-content: center;
+gap: 2px;
+margin-block: 40px 25px;
+}
+
+.footer-brand .separator { animation: rotate360 15s linear infinite; }
+
+.footer-brand .label-1 { margin-block-end: 30px; }
+
+.footer-brand .label-1 .span {
+display: inline;
+color: var(--white);
+}
+
+.footer-brand .icon-wrapper .input-field { cursor: text; }
+
+.footer-brand .btn { min-width: 100%; }
+
+.footer-list {
+display: grid;
+gap: 20px;
+}
+
+.footer-link {
+font-weight: var(--weight-bold);
+text-transform: uppercase;
+letter-spacing: var(--letterSpacing-4);
+margin-inline: auto;
+transition: var(--transition-1);
+}
+
+.footer-link:is(:hover, :focus-visible) { color: var(--gold-crayola); }
+
+.copyright {
+color: var(--quick-silver);
+line-height: var(--lineHeight-3);
+}
+
+.copyright .link {
+display: inline;
+color: var(--gold-crayola);
+text-decoration: underline;
+}
+
+
+.back-top-btn {
+position: fixed;
+bottom: 20px;
+right: 20px;
+background-color: var(--gold-crayola);
+color: var(--smoky-black-1);
+font-size: 22px;
+width: 50px;
+height: 50px;
+border-radius: var(--radius-circle);
+display: grid;
+place-items: center;
+box-shadow: var(--shadow-1);
+transition: var(--transition-1);
+opacity: 0;
+visibility: hidden;
+z-index: 4;
+}
+
+.back-top-btn:is(:hover, :focus-visible) {
+background-color: var(--white);
+color: var(--gold-crayola);
+}
+
+.back-top-btn.active {
+opacity: 1;
+visibility: visible;
+}
+
+
+/* Modal background */
+.modal {
+display: none; /* Hidden by default */
+position: fixed;
+z-index: 1000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark overlay */
+backdrop-filter: blur(10px); /* Blur effect */
+justify-content: center;
+align-items: center;
+}
+
+/* Modal content */
+.modal-content {
+position: relative;
+max-width: 80%;
+max-height: 80%;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+/* Modal image */
+#modalImage {
+width: 100%;
+max-height: 100vh;
+object-fit: contain;
+border-radius: 10px;
+}
+
+/* Close button */
+.close {
+position: absolute;
+top: 20px;
+right: 30px;
+color: white;
+font-size: 40px;
+font-weight: bold;
+cursor: pointer;
+}
+
+/* Navigation buttons */
+.nav-btn {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+background: rgba(255, 255, 255, 0.5);
+border: none;
+padding: 10px 15px;
+font-size: 30px;
+cursor: pointer;
+border-radius: 50%;
+}
+
+#prevBtn {
+left: 10px;
+}
+
+#nextBtn {
+right: 10px;
+}
+
+/* Blur effect when modal is open */
+body.modal-open {
+overflow: hidden; /* Prevent scrolling */
+}
+
+@media (min-width: 575px) {
+
+:root {
+
+  --fontSize-body-2: 2rem;
+
+}
+
+
+:is(.service, .about) .section-text {
+  max-width: 420px;
+  margin-inline: auto;
+}
+
+.contact-number { --fontSize-body-1: 3rem; }
+
+.topbar {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-block: 10px;
+  border-block-end: 1px solid var(--white-alpha-20);
+  z-index: 4;
+  transition: var(--transition-1);
+}
+
+.topbar:has(~ .header.active) { transform: translateY(-100%); }
+
+.topbar-item:not(.link),
+.topbar .separator { display: none; }
+
+.topbar .container,
+.topbar-item {
+  display: flex;
+  align-items: center;
+}
+
+.topbar .container {
+  justify-content: center;
+  gap: 30px;
+}
+
+.topbar-item { gap: 6px; }
+
+.topbar-item ion-icon { --ionicon-stroke-width: 60px; }
+
+.topbar-item .span { font-size: var(--fontSize-label-1); }
+
+.topbar .link { transition: var(--transition-1); }
+
+.topbar .link:is(:hover, :focus-visible) { color: var(--gold-crayola); }
+
+
+.header { top: 1px; }
+
+.header.active { top: 0; }
+
+.header .btn {
+  display: block;
+  margin-inline-start: auto;
+}
+
+
+.hero-btn { transform: scale(0.7); }
+
+
+.service .container {
+  max-width: 420px;
+  margin-inline: auto;
+}
+
+.about .container { gap: 80px; }
+
+
+.about .abs-img-1 { width: 285px; }
+
+.about .contact-number { --fontSize-body-1: 2.4rem; }
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .games-container {
+      flex-direction: column;
+      gap: 30px;
+  }
+
+  .game-category {
+      width: 100%;
+      text-align: center;
+  }
+
+
+}
+
+.register-card .title-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+}
+
+.register-card .badge { margin-block-start: 0; }
+
+.register-card .span {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+}
+
+.register-card .span::before {
+  content: "";
+  height: 6px;
+  flex-grow: 1;
+  border-block: 1px solid var(--white-alpha-20);
+}
+
+.event .container {
+  max-width: 420px;
+  margin-inline: auto;
+}
+
+.footer-brand > * {
+  max-width: 460px;
+  margin-inline: auto;
+}
+
+.footer .input-wrapper { position: relative; }
+
+.footer .input-field {
+  margin-block-end: 0;
+  padding-inline-end: 205px;
+}
+
+.footer-brand .btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  min-width: max-content;
+}
+
+}
+
+@media (min-width: 768px) {
+
+.grid-list { grid-template-columns: 1fr 1fr; }
+
+:is(.service, .event) .container { max-width: 820px; }
+
+:is(.service, .event) .grid-list li:last-child {
+  grid-column: 1 / 3;
+  width: calc(50% - 20px);
+  margin-inline: auto;
+}
+
+.navbar-list { margin-inline: 30px; }
+
+
+.hero .slider-btn {
+  display: grid;
+  position: absolute;
+  z-index: 1;
+  color: var(--gold-crayola);
+  font-size: 2.4rem;
+  border: 1px solid var(--gold-crayola);
+  width: 45px;
+  height: 45px;
+  place-items: center;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  transition: var(--transition-1);
+}
+
+.hero .slider-btn ion-icon { transform: rotate(-45deg); }
+
+.hero .slider-btn.prev { left: 30px; }
+
+.hero .slider-btn.next { right: 30px; }
+
+.hero .slider-btn:is(:hover, :focus-visible) {
+  background-color: var(--gold-crayola);
+  color: var(--black);
+}
+
+.reservation .input-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+}
+
+.reservation .input-wrapper:nth-child(4) {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+
+.footer-brand { grid-column: 1 / 3; }
+
+}
+
+/* Improve Special Dish Layout for Mobile */
+@media (max-width: 768px) {
+.special-dish {
+  display: flex;
+  flex-direction: column-reverse; /* Move text above the image */
+  text-align: center;
+  align-items: center;
+}
+
+.special-dish-banner {
+  width: 100%;
+  max-width: 400px; /* Adjust image size */
+}
+
+.special-dish-content {
+  padding: 20px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.special-dish-content .btn {
+  margin-inline: auto; /* Center button */
+}
+
+/* Default (Mobile-friendly size) */
+.service-card .card-banner {
+width: 100%; /* Make the image responsive */
+max-width: 250px; /* Reduce max width for smaller screens */
+height: auto; /* Maintain aspect ratio */
+margin: 0 auto; /* Center the images */
+}
+
+.service-card img {
+width: 100%; /* Make images responsive */
+max-width: 250px; /* Reduce size */
+height: auto; /* Maintain aspect ratio */
+}
+
+.service-card .card-content {
+  text-align: center; /* Center text for better alignment */
+}
+}
+
+
+
+/* Improve Special Dish Layout for Mobile */
+@media (max-width: 920px) {
+.special-dish {
+  display: flex;
+  flex-direction: column-reverse; /* Move text above the image */
+  text-align: center;
+  align-items: center;
+}
+
+.special-dish-banner {
+  width: 100%;
+  max-width: 600px; /* Adjust image size */
+}
+
+.special-dish-content {
+  padding: 20px;
+  max-width: 600px;
+  text-align: center;
+}
+
+.special-dish-content .btn {
+  margin-inline: auto; /* Center button */
+}
+
+.service-card .card-banner {
+  width: 100%; /* Make the image responsive */
+  max-width: 250px; /* Reduce max width for smaller screens */
+  height: auto; /* Maintain aspect ratio */
+  margin: 0 auto; /* Center the images */
+}
+
+.service-card img {
+  width: 100%; /* Make images responsive */
+  max-width: 250px; /* Reduce size */
+  height: 350px; /* Maintain aspect ratio */
+}
+
+.service-card .card-content {
+  text-align: center; /* Center text for better alignment */
+}
+.about .container {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center everything */
+  text-align: center;
+}
+
+.about-content {
+  order: 1; /* Ensure text appears first */
+}
+
+.about-banner {
+  order: 2; /* Move the image below the text */
+  width: 100%;
+  max-width: 600px; /* Adjust width for better fit */
+}
+
+.about-banner img {
+  width: 100%; /* Make image responsive */
+  max-width: 650px;
+  height: auto;
+}
+}
+
+
+@media (min-width: 992px) {
+
+:root {
+
+  --section-space: 100px;
+
+}
+
+
+:is(.service, .event) .container { max-width: unset; }
+
+:is(.service, .event) .grid-list { grid-template-columns: repeat(3, 1fr); }
+
+:is(.service, .event) .grid-list li:last-child {
+  grid-column: auto;
+  width: 100%;
+}
+
+.topbar-item:not(.link) { display: flex; }
+
+.topbar .item-2 { margin-inline-end: auto; }
+
+.service .shape { display: block; }
+
+.service .shape-1 {
+  bottom: 0;
+  left: 0;
+}
+
+.service .shape-2 {
+  top: 0;
+  right: 0;
+}
+
+
+.about .container {
+  grid-template-columns: 0.7fr 1fr;
+  gap: 30px;
+}
+
+
+.special-dish {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: left;
+}
+
+.special-dish-content { padding-inline: 50px 25px; }
+
+.special-dish-content .container { position: relative; }
+
+.special-dish .section-subtitle::after,
+.special-dish .btn { margin-inline: 0; }
+
+.special-dish-content .wrapper { justify-content: flex-start; }
+
+.special-dish .abs-img {
+  position: absolute;
+  top: 10px;
+  left: -40px;
+  animation: move 5s linear infinite;
+}
+
+
+.register .grid-list {
+  position: relative;
+  column-gap: 90px;
+}
+
+.register .grid-list::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  border-inline-start: 1px solid var(--white-alpha-20);
+}
+
+
+.testi-text {
+  max-width: 910px;
+  margin-inline: auto;
+}
+
+.reservation-form {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr;
+}
+
+.footer .grid-list {
+  grid-template-columns: 0.45fr 1fr 0.45fr;
+  align-items: center;
+}
+
+.footer-brand {
+  grid-column: auto;
+  order: 1;
+  padding-block: 100px;
+}
+
+.footer-list:last-child { order: 2; }
+
+}
+
+
+@media (min-width: 1200px) {
+
+:root {
+
+  --fontSize-title-2: 2.5rem;
+
+}
+
+.container,
+:is(.service, .event) .container {
+  max-width: 1200px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.topbar .container { max-width: unset; }
+
+.topbar .separator { display: block; }
+
+
+.nav-open-btn,
+.navbar > *:not(.navbar-list),
+.header .overlay { display: none; }
+
+.header .container { max-width: unset; }
+
+.navbar,
+.navbar.active,
+.navbar-list { all: unset; }
+
+.navbar,
+.navbar.active { margin-inline: auto 20px; }
+
+.navbar-list {
+  display: flex;
+  gap: 30px;
+}
+
+.navbar-item { border-block-start: none; }
+
+.navbar .separator { display: none; }
+
+.navbar-link:is(:hover, :focus-visible, .active) .span {
+  transform: unset;
+}
+
+.navbar-link {
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--letterSpacing-1);
+}
+
+.navbar-link::after { display: block; }
+
+.navbar-link.active::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.header .btn { margin-inline-start: 0; }
+
+
+.hero { height: 880px; }
+
+.hero-btn {
+  bottom: 50px;
+  right: 50px;
+  transform: scale(1);
+}
+
+
+.service .grid-list { gap: 150px; }
+
+.service .grid-list li:nth-child(2n+1) { transform: translateY(-160px); }
+
+.service .section-text { margin-block-end: 75px; }
+
+
+.about { padding-block: 170px 100px; }
+
+.special-dish-content {
+  padding: 225px 120px;
+  padding-inline-end: 0;
+}
+
+.special-dish-content .container {
+  max-width: 460px;
+  margin-inline: 0;
+}
+
+.registration-form {
+max-width: 600px;
+margin: 0 auto;
+padding: 20px;
+background: rgba(255, 255, 255, 0.1);
+border-radius: 10px;
+backdrop-filter: blur(10px);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #ffffff;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  background: transparent;  /* Transparent background */
+  color: white;  /* White text */
+}
+
+.form-group input::placeholder,
+.form-group select option {
+  color: rgba(255, 255, 255, 0.7);  /* Light white color for placeholder */
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #00d4dce6;
+  outline: none;
+  background: #000000ca;
+}
+
+.btn_add_member{
+color: rgba(221, 225, 232, 0.969);
+}
+
+.btn_add_member:hover{
+color: rgb(71, 100, 158);
+transition: 0.5s;
+}
+
+button.btn-primary {
+  width: 100%;
+  padding: 10px;
+  background: #000000ca;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+}
+
+button.btn-primary:hover {
+  background: #00d4dce6;
+  color: #0952b8;
+}
+
+.remove-btn {
+top: 5px;
+right: 5px;
+background: rgba(182, 18, 18, 0.695);
+color: white;
+border: none;
+padding: 5px;
+cursor: pointer;
+ }
+
+
+.form-left,
+.form-right { padding: 75px 60px; }
+
+
+.features .grid-list { grid-template-columns: repeat(4, 1fr); }
+
+}
+
+@media (min-width: 1400px) {
+
+
+.navbar { margin-inline: auto; }
+
+.about-content { padding-inline-end: 90px; }
+
+.about .shape {
+  display: block;
+  top: 46%;
+  left: 0;
+}
+
+.special-dish {
+  overflow: visible;
+  position: relative;
+}
+
+.special-dish .shape {
+  display: block;
+  right: 0;
+  z-index: 1;
+}
+
+.special-dish .shape-1 { top: 45%; }
+
+.special-dish .shape-2 {
+  bottom: 0;
+  transform: translateY(50%);
+  width: max-content;
+}
+
+.features { overflow: visible; }
+
+.features .shape { display: block; }
+
+.features .shape-1 {
+  top: -100px;
+  right: 0;
+}
+
+.features .shape-2 {
+  bottom: 80px;
+  left: 0;
+}
+
+}
+
+  </style>
 </head>
-<body>
+
+<body id="top">
+  <div class="preload" data-preaload>
+    <div class="circle"></div>
+    <p class="text">AI VERSE</p>
+  </div>
+
+  <header class="header" data-header>
     <div class="container">
-        <h2>Event Registration</h2>
 
-        <form id="registrationForm" method="POST">{% csrf_token %}
-            <label for="event">Select Event:</label>
-            <select id="event" name="event" onchange="updateThemes()">
-                <option value="Dreambrush">Dreambrush</option>
-                <option value="AIVERSE">AIVERSE</option>
-            </select>
+      <a href="#" class="logo">
+        <img src="{% static 'cafelogo.jpg' %}" width="60" height="50" alt="AI VERSE - Home">
+      </a>
+     AI VERSE
 
-            <h3>Team Leader Details</h3>
-            <label>Name:</label> <input type="text" name="leader_name" required>
-            <label>Year:</label> <input type="text" name="leader_year" required>
-            <label>College:</label> <input type="text" name="leader_college" required>
-            <label>Mobile No.:</label> <input type="text" name="leader_mobile" required>
-            <label>Email ID:</label> <input type="email" name="leader_email" required>
-            <label>Gender:</label>
-            <select name="leader_gender">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-            </select>
-            <label>Team Name:</label> <input type="text" name="team_name" required>
-            <label>Theme:</label>
-            <select name="theme" id="theme" class="theme-box">
-            </select>
+      <nav class="navbar" data-navbar>
 
-            <h3>Team Members</h3>
-            <div id="members"></div>
-            <button type="button" onclick="addMember()">Add Team Member</button>
+        <button class="close-btn" aria-label="close register" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
 
-            <h3>Total Amount: ₹<span id="totalAmount">150</span></h3>
-            <button type="submit" class="btn">Pay Amount</button>
-        </form>
+        <a href="#" class="logo">
+          <img src="{% static 'cafelogo.jpg' %}" width="120" height="50" alt="AI VERSE - Home">
+          AI VERSE
+        </a>
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <a href="#home" class="navbar-link hover-underline active">
+              <div class="separator"></div>
+
+              <span class="span">Home</span>
+            </a>
+          </li>
+
+
+          <li class="navbar-item dropdown">
+            <a href="#" class="navbar-link hover-underline dropdown-toggle">
+              <div class="separator"></div>
+              <span class="span">About Event</span>
+              <ion-icon name="chevron-down-outline"></ion-icon>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#about">DREAM BRUSH</a></li>
+              <li><a href="#ai-verse">AI VERSE</a></li>
+            </ul>
+          </li>
+
+
+          <li class="navbar-item">
+            <a href="#register" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">Register</span>
+            </a>
+          </li>
+
+
+          <li class="navbar-item">
+            <a href="#contact" class="navbar-link hover-underline">
+              <div class="separator"></div>
+
+              <span class="span">Contact</span>
+            </a>
+          </li>
+
+        </ul>
+
+        <div class="text-center">
+          <p class="headline-1 navbar-title">Visit Us</p>
+
+          <address class="body-4">
+            JBIET College, Hyderabad, Telangana 500075
+          </address>
+
+          <p class="body-4 navbar-text">From: 10.30 am - 04.00pm</p>
+
+          <a href="mailto:deptofaiml@gmail.com" class="body-4 sidebar-link">deptofaiml@gmail.com</a>
+
+          <div class="separator"></div>
+
+          <p class="contact-label">Call</p>
+
+          <a href="tel:+91 8630728473" class="body-1 contact-number hover-underline">
+            +91 8630728473
+          </a>
+        </div>
+
+      </nav>
+
+      <button class="nav-open-btn" aria-label="open register" data-nav-toggler>
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+      </button>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+
+    </div>
+  </header>
+
+  <main>
+    <article>
+
+      <section class="hero text-center" aria-label="home" id="home">
+
+        <ul class="hero-slider" data-hero-slider>
+
+          <li class="slider-item active" data-hero-slider-item>
+
+            <div class="slider-bg">
+              <img src="{% static 'hero-slider-1.jpg' %}" width="1880" height="950" alt="" class="img-cover">
+            </div>
+
+            <p class="label-2 section-subtitle slider-reveal">CSE(AIML) Dept Presents:</p>
+
+            <h1 class="display-1 hero-title slider-reveal">
+              AI VERSE <br>
+
+            </h1>
+          </li>
+
+
+          <li class="slider-item" data-hero-slider-item>
+
+            <div class="slider-bg">
+              <img src="{% static 'hero-slider-3.jpg' %}" width="1880" height="950" alt="" class="img-cover">
+            </div>
+
+            <p class="label-2 section-subtitle slider-reveal">Beyond Imagination</p>
+
+            <h1 class="display-1 hero-title slider-reveal">
+              "Level up the excitement at our event!!<br>
+
+            </h1>
+
+
+          </li>
+
+          <li class="slider-item" data-hero-slider-item>
+
+            <div class="slider-bg">
+              <img src="{% static 'hero-slider-2.jpg' %}" width="1880" height="950" alt="" class="img-cover">
+            </div>
+
+
+            <p class="label-2 section-subtitle slider-reveal">Survive & Conquer</p>
+
+            <h1 class="display-1 hero-title slider-reveal">
+               <br>
+               On 5th March
+               Venue - Main Block, JBIET
+
+            </h1>
+
+
+
+          </li>
+
+        </ul>
+
+        <button class="slider-btn prev" aria-label="slide to previous" data-prev-btn>
+          <ion-icon name="chevron-back"></ion-icon>
+        </button>
+
+        <button class="slider-btn next" aria-label="slide to next" data-next-btn>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </button>
+
+      </section>
+
+      <section class="section service bg-black-10 text-center" aria-label="service">
+        <div class="container">
+
+          <p class="section-subtitle label-2">Our Committee</p>
+
+          <h2 class="headline-1 section-title">Event Organizing Committee</h2>
+
+          <p class="section-text">
+            Department of Artificial Intelligence & Machine Learning, CSE(Artificial Intelligence & Machine Learning) & Machine Learning Mavericks Club          </p>
+          </p>
+
+          <ul class="grid-list">
+
+
+
+            <li>
+              <div class="service-card">
+
+                <a href="#" class="has-before hover:shine">
+                  <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
+                    <img src="{% static 'service-2.jpg' %}" width="285" height="336" loading="lazy" alt="Appetizers"
+                      class="img-cover">
+                  </figure>
+                  Supporting
+                </a>
+
+                <div class="card-content">
+
+                  <h3 class="title-4 card-title">
+                    <a href="#">SAC</a>
+                  </h3>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card">
+
+                <a href="#"class="has-before hover:shine">
+                  <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
+                    <img src="{% static 'service-1.jpg' %}" width="285" height="336" loading="lazy" alt="Breakfast"
+                      class="img-cover">
+                  </figure>
+                  Main Lead
+                </a>
+
+                <div class="card-content">
+
+                  <h3 class="title-4 card-title">
+                    <a href="#">MLM Club</a>
+                  </h3>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card">
+
+                <a href="#" class="has-before hover:shine">
+                  <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
+                    <img src="{% static 'service-3.jpg' %}" width="285" height="336" loading="lazy" alt="Drinks"
+                      class="img-cover">
+                  </figure>
+                  Supporting
+                </a>
+
+                <div class="card-content">
+
+                  <h3 class="title-4 card-title">
+                    <a href="#">JBIET</a>
+                  </h3>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+
+
+        </div>
+      </section>
+
+    </article>
+
+  </main>
+
+<section class="section register" aria-labelledby="about-label" id="about">
+  <div class="container">
+
+    <div class="about-content text-center">
+      <p class="section-subtitle label-2">About Event</p>
+      <h2 class="section-title headline-1">Dream Brush</h2>
+      Time left for the Dream Brush:
+        <!-- Countdown Timer for Dream Brush -->
+      <div id="countdown-dream" class="countdown-timer">
+        <span id="days-dream"></span> Days
+        <span id="hours-dream"></span> Hours
+        <span id="minutes-dream"></span> Minutes
+        <span id="seconds-dream"></span> Seconds
+      </div>
+      <div class="service-card">
+
+        <a href="#" class="has-before hover:shine">
+          <figure class="card-banner img-holder" style="--width: 300; --height: 430;">
+            <img src="{% static 'dream brush.jpg' %}" width="185" height="136" loading="lazy" alt="Appetizers"
+              class="img-cover">
+          </figure>
+        </a>
+
+      </div>
+      <!-- Timeline for Technical Games (Centered Step-by-Step) -->
+      <div class="timeline">
+
+        <div class="timeline-item center">
+            <div class="register-card hover:card">
+                <h3 class="title-3">Dream Brush</h3>
+                <p class="card-text label-1">
+                    <strong>Event Description:</strong> A creative poster-making competition where participants design posters based on given themes and present their work. The best poster will be declared the winner. 🎨✨ <br><br>
+
+                    <strong>Judging Criteria:</strong> Creativity, relevance to the theme, presentation, and design quality. <br><br>
+
+                    <strong>Date & Time:</strong> February 28th, 10:30 AM <br>
+                    <strong>Team Size:</strong> 1-2 participants <br>
+                    <strong>Registration Fee:</strong> ₹99/- <br><br>
+
+                    <strong>Rules:</strong>
+                    <ul>
+                        <li>Posters must be related to choosen theme.</li>
+                        <li>Participants can make their posters at home.</li>
+                        <li>Digital or hand-drawn posters are allowed.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
     </div>
 
+  </div>
+
+
+  </div>
+</section>
+
+<section class="section register" aria-labelledby="about-label" id="ai-verse">
+  <div class="container">
+
+      <!-- Centered About Us AI Verse Section -->
+      <div class="about-content text-center">
+          <p class="section-subtitle label-2">About Event</p>
+          <h2 class="section-title headline-1">AI VERSE</h2>
+          Time left for the AI Verse:
+             <!-- Countdown Timer for AI VERSE -->
+      <div id="countdown-ai" class="countdown-timer">
+        <span id="days-ai"></span> Days
+        <span id="hours-ai"></span> Hours
+        <span id="minutes-ai"></span> Minutes
+        <span id="seconds-ai"></span> Seconds
+      </div>
+          <div class="service-card">
+
+            <a href="#" class="has-before hover:shine">
+              <figure class="card-banner img-holder" style="--width: 285; --height: 330;">
+                <img src="{% static 'event.jpg' %}" width="55" height="56" loading="lazy" alt="Appetizers"
+                  class="img-cover">
+              </figure>
+            </a>
+
+          </div>
+          <p class="label-1">
+              "Level up the excitement at our event – where games bring joy, and every moment is a playtime delight!"
+          </p>
+      </div>
+
+      <!-- Timeline for Technical Games (Centered Step-by-Step) -->
+      <div class="timeline">
+
+          <div class="timeline-item center">
+              <div class="register-card hover:card">
+                  <h3 class="title-3">AI Treasure Hunt</h3>
+                  <p class="card-text label-1">
+                      <strong>First Level:</strong> Earn at least 3 points to advance. <br>
+                      <strong>Second Level:</strong> Write Python code in minimal lines within 15 minutes. <br>
+                      <strong>Third Level:</strong> Fill missing code parts with minimal errors. <br>
+                      <strong>Date & Time:</strong> March 14th, 10:30 AM <br>
+                      <strong>Team Size:</strong> 2 <br>
+                      <strong>Registration Fee:</strong> 99/-
+                  </p>
+              </div>
+          </div>
+
+      </div>
+
+      <!-- Non-Technical Games (Centered at Bottom) -->
+      <div class="timeline">
+          <div class="timeline-line"></div>
+
+          <div class="timeline-item center">
+              <div class="register-card hover:card">
+                  <h3 class="title-3">Virtual Gaming: PUBG</h3>
+                  <p class="card-text label-1">
+                      <strong>Excitement:</strong> Intense Call of Duty matches with high-stakes gameplay. <br>
+                      <strong>Competition:</strong> Skilled players battle for supremacy. <br>
+                      <strong>Teamwork:</strong> Strategy and coordination are key. <br>
+                      <strong>Date & Time:</strong> March 5th, 12:30 PM <br>
+                      <strong>Team Size:</strong> 4 <br>
+                      <strong>Registration Fee:</strong> 200/-<br>
+                      <strong>Pool Prize Upto :</strong> 5000/-
+
+                  </p>
+              </div>
+          </div>
+
+      </div>
+
+  </div>
+</section>
+
+      <section class="section register" aria-label="register-label" id="register">
+        <div class="container">
+            <p class="section-subtitle text-center label-2">Registration Process</p>
+            <h2 class="headline-1 section-title text-center">Register for Your Team</h2>
+            <p class="text-center label-1">
+                Fill in your details to register for the event.
+                Get ready to participate and compete for top prizes.
+            </p>
+
+            <div class="registration-form">
+                <form id="eventRegistrationForm">
+
+                    <div class="form-group">
+                        <label for="event">Select Event</label>
+                        <select id="event" name="event" onchange="updateThemes()" required>
+                            <option value="" disabled selected>Select an event</option>
+                            <option value="Dreambrush">Dreambrush (Poster Making)</option>
+                            <option value="AIVERSE">AIVERSE</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Name">Name:</label>
+                        <input type="text" id="name" name="leader_name" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="Year">Year:</label>
+                      <input type="text" id="Year" name="year" placeholder="Enter your year" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="college">College:</label>
+                    <input type="text" id="college" name="leader_college" placeholder="Enter your college name" required>
+                </div>
+
+                    <div class="form-group">
+                        <label for="Mobile No.:">Mobile No.:</label>
+                        <input type="email" id="Mobile No.:" name="leader_mobile" placeholder="Enter your mobile no." required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="email">Email ID:</label>
+                      <input type="email" id="email" name="leader_email" placeholder="Enter your email" required>
+                  </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select name="leader_gender" id="gender">
+                          <option value="" disabled selected>Select gender</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="Other">Other</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="team name">Team Name:</label>
+                      <input type="text" id="team name" name="team_name" placeholder="Enter your team name" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="theme">Theme:</label>
+                    <select name="theme" id="theme" class="theme-box">
+                    </select>
+
+                </div>
+
+                <h3>Team Members</h3>
+                <div id="members"></div>
+                <button type="button" class="btn_add_member" onclick="addMember()">+Add Team Member</button>
+                    <h3>Total Amount: ₹<span id="totalAmount">150</span></h3>
+
+                  <button type="submit" class="btn btn-primary">Submit Registration</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+<div id="imageModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <button id="prevBtn" class="nav-btn">&#10094;</button>
+    <img id="modalImage" src="" alt="Register Image">
+    <button id="nextBtn" class="nav-btn">&#10095;</button>
+  </div>
+</div>
+
+      <section class="section features text-center" aria-label="features">
+        <div class="container">
+
+          <p class="section-subtitle label-2">Reward's</p>
+
+          <h2 class="headline-1 section-title">Prizes and Awards for Winners</h2>
+
+          <ul class="grid-list">
+
+            <li class="feature-item">
+              <div class="feature-card">
+
+                <div class="card-icon">
+                  <img src="{% static 'features-icon-1.png' %}" width="100" height="80" loading="lazy" alt="icon">
+                </div>
+
+                <h3 class="title-2 card-title">Cash Prizes</h3>
+
+                <p class="label-1 card-text">"Winners will receive generous cash prizes as a recognition of their outstanding performance.!"</p>
+
+              </div>
+            </li>
+
+            <li class="feature-item">
+              <div class="feature-card">
+
+                <div class="card-icon">
+                  <img src="{% static 'features-icon-2.png' %}" width="100" height="80" loading="lazy" alt="icon">
+                </div>
+
+                <h3 class="title-2 card-title">Trophies and Medals</h3>
+
+                <p class="label-1 card-text">"Custom-designed trophies and medals will be awarded to the top performers in each competition.!"</p>
+
+              </div>
+            </li>
+
+            <li class="feature-item">
+              <div class="feature-card">
+
+                <div class="card-icon">
+                  <img src="{% static 'features-icon-3.png' %}" width="100" height="80" loading="lazy" alt="icon">
+                </div>
+
+                <h3 class="title-2 card-title">Certificates of Excellence</h3>
+
+                <p class="label-1 card-text">"Participants who demonstrate exceptional skills will be honored with certificates of excellence.!"</p>
+
+              </div>
+            </li>
+
+            <li class="feature-item">
+              <div class="feature-card">
+
+                <div class="card-icon">
+                  <img src="{% static 'features-icon-4.png' %}" width="100" height="80" loading="lazy" alt="icon">
+                </div>
+
+                <h3 class="title-2 card-title">Mentorship</h3>
+
+                <p class="label-1 card-text">"Outstanding participants will have the chance to receive mentorship and guidance from industry experts.!"</p>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+  <footer class="footer section has-bg-image text-center"
+    style="background-image: url('{% static 'footer-bg.jpg' %}')">
+    <div class="container">
+
+      <div class="footer-top grid-list">
+
+        <div class="footer-brand has-before has-after">
+
+          <p class="section-subtitle label-2">Contact Us</p>
+
+
+          <a href="#" id="contact" class="logo">
+            <img src="{% static 'cafelogo.jpg' %}" width="160" height="50" loading="lazy" alt="AI VERSE home">
+          </a>
+
+          <address class="body-4">
+            JBIET College, Hyderabad, Telangana 500075
+          </address>
+
+          <a href="mailto:deptofaiml@gmail.com" class="body-4 contact-link">deptofaiml@gmail.com</a>
+
+          <a href="tel:+91 8630728473" class="body-4 contact-link">Yash Tyagi - +91 8630728473<br/>
+
+          </a>
+          <a href="tel:+91 7568665923" class="body-4 contact-link">Kumud Tyagi -  +91 7568665923<br/>
+          </a>
+
+
+
+          <p class="body-4">
+            From: 10:30 am - 04:00 pm
+          </p>
+
+          <li>
+            <a  href="https://maps.app.goo.gl/hVMBiEtyzQyLiSwB7" class="section-subtitle label-2">Open in Google Maps</a>
+          </li>
+
+          <div class="wrapper">
+            <div class="separator"></div>
+            <div class="separator"></div>
+            <div class="separator"></div>
+          </div>
+        </div>
+
+        <ul class="footer-list">
+
+          <li>
+            <a href="#" class="label-2 footer-link hover-underline">Home</a>
+          </li>
+
+
+
+          <li class="navbar-item dropdown">
+            <a href="#" class="label-2 footer-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">About Event</span>
+              <ion-icon name="chevron-down-outline"></ion-icon>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#about">DREAM BRUSH</a></li>
+              <li><a href="#ai-verse">AI VERSE</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a  href="#register" class="label-2 footer-link hover-underline">Register</a>
+          </li>
+
+
+        </ul>
+
+        <ul class="footer-list">
+
+          <li>
+            <a href="https://www.instagram.com/machine_learning_mavericks/" class="label-2 footer-link hover-underline">Instagram</a>
+          </li>
+
+        </ul>
+
+      </div>
+
+      <div class="footer-bottom">
+
+        <p class="copyright">
+          &copy; 2025 AI VERSE. All Rights Reserved
+        </p>
+
+      </div>
+
+    </div>
+  </footer>
+
+
+  <a href="#top" class="back-top-btn active" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+  </a>
+
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
     <script>
-        let memberCount = 1;
-        let prices = { "Dreambrush": 150, "AIVERSE": 200 };
-        let themes = {
-            "Dreambrush": [
-                "Sustainable Infrastructure",
-                "3D Printing in Construction",
-                "Renewable Energy Systems",
-                "Electric Vehicles & Future Mobility",
-                "Wireless Power Transfer",
-                "Quantum Computing in Electrical Engineering",
-                "AI-Driven Semiconductor Manufacturing"
-            ],
-            "AIVERSE": ["Game 1", "Game 2"]
-        };
 
-        function updateThemes() {
-            let event = document.getElementById("event").value;
-            let themeSelect = document.getElementById("theme");
+const preloader = document.querySelector("[data-preaload]");
 
-            themeSelect.innerHTML = "";
+window.addEventListener("load", function () {
+  preloader.classList.add("loaded");
+  document.body.classList.add("loaded");
+});
 
-            themes[event].forEach(theme => {
-                let option = document.createElement("option");
-                option.value = theme;
-                option.innerText = theme;
-                themeSelect.appendChild(option);
-            });
-            updateAmount();
-        }
+const addEventOnElements = function (elements, eventType, callback) {
+  for (let i = 0, len = elements.length; i < len; i++) {
+    elements[i].addEventListener(eventType, callback);
+  }
+};
 
-        function addMember() {
-            if (memberCount >= 4) return alert("Maximum 4 members allowed (including leader).");
-            memberCount++;
+/**
+ * NAVBAR
+ */
 
-            let div = document.createElement("div");
-            div.classList.add("member");
-            div.innerHTML = `
-                <button type="button" class="remove-btn" onclick="removeMember(this)">X</button>
-                <h4>Member ${memberCount}</h4>
-                <label>Name:</label> <input type="text" name="member_${memberCount}_name" required>
-                <label>Year:</label> <input type="text" name="member_${memberCount}_year" required>
-                <label>College:</label> <input type="text" name="member_${memberCount}_college" required>
-                <label>Mobile No.:</label> <input type="text" name="member_${memberCount}_mobile" required>
-                <label>Email ID:</label> <input type="email" name="member_${memberCount}_email" required>
-                <label>Gender:</label>
-                <select name="member_${memberCount}_gender">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                </select>
-            `;
-            document.getElementById("members").appendChild(div);
-            updateAmount();
-        }
+// Select elements
+const navbar = document.querySelector("[data-navbar]");
+const navTogglers = document.querySelectorAll("[data-nav-toggler]");
+const overlay = document.querySelector("[data-overlay]");
+const navLinks = document.querySelectorAll(".navbar-link");
 
-        function removeMember(button) {
-            button.parentElement.remove();
-            memberCount--;
+// Function to toggle navbar
+const toggleNavbar = function () {
+  navbar.classList.toggle("active");
+  overlay.classList.toggle("active");
+  document.body.classList.toggle("nav-active");
+};
 
-            let members = document.querySelectorAll(".member");
-            members.forEach((member, index) => {
-                member.querySelector("h4").innerText = `Member ${index + 2}`;
-            });
+// Add event listener to the nav toggler buttons
+navTogglers.forEach((toggler) => {
+  toggler.addEventListener("click", toggleNavbar);
+});
 
-            updateAmount();
-        }
+// Function to close navbar when a link is clicked
+const closeNavbarOnClick = function () {
+  navbar.classList.remove("active");
+  overlay.classList.remove("active");
+  document.body.classList.remove("nav-active");
+};
 
-        function updateAmount() {
-            let event = document.getElementById("event").value;
-            document.getElementById("totalAmount").innerText = memberCount * prices[event];
-        }
-        updateThemes();
-    </script>
+// Add event listener to each navbar link
+navLinks.forEach((link) => {
+  link.addEventListener("click", closeNavbarOnClick);
+});
+
+/**
+ * COMING SOON
+ */
+document.addEventListener("DOMContentLoaded", function () {
+  // Select the buttons
+  const facebookBtn = document.getElementById("facebookBtn");
+  const youtubeBtn = document.getElementById("youtubeBtn");
+
+  // Select the span elements to show the message
+  const facebookMsg = document.getElementById("facebookMsg");
+  const youtubeMsg = document.getElementById("youtubeMsg");
+
+  // Function to show "Coming Soon" beside the button
+  function showComingSoon(msgElement) {
+    msgElement.textContent = "Coming Soon!";
+    msgElement.style.color = "red"; // Make text red for visibility
+
+    // Remove message after 3 seconds
+    setTimeout(() => {
+      msgElement.textContent = "";
+    }, 3000);
+  }
+
+  // Attach event listeners
+  if (facebookBtn) {
+    facebookBtn.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent navigation
+      showComingSoon(facebookMsg);
+    });
+  }
+
+  if (youtubeBtn) {
+    youtubeBtn.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent navigation
+      showComingSoon(youtubeMsg);
+    });
+  }
+});
+
+/**
+ * HEADER & BACK TOP BTN
+ */
+
+const header = document.querySelector("[data-header]");
+const backTopBtn = document.querySelector("[data-back-top-btn]");
+
+let lastScrollPos = 0;
+
+const hideHeader = function () {
+  const isScrollBottom = lastScrollPos < window.scrollY;
+  if (isScrollBottom) {
+    header.classList.add("hide");
+  } else {
+    header.classList.remove("hide");
+  }
+
+  lastScrollPos = window.scrollY;
+};
+
+window.addEventListener("scroll", function () {
+  if (window.scrollY >= 50) {
+    header.classList.add("active");
+    backTopBtn.classList.add("active");
+    hideHeader();
+  } else {
+    header.classList.remove("active");
+    backTopBtn.classList.remove("active");
+  }
+});
+
+/**
+ * HERO SLIDER
+ */
+
+const heroSlider = document.querySelector("[data-hero-slider]");
+const heroSliderItems = document.querySelectorAll("[data-hero-slider-item]");
+const heroSliderPrevBtn = document.querySelector("[data-prev-btn]");
+const heroSliderNextBtn = document.querySelector("[data-next-btn]");
+
+let currentSlidePos = 0;
+let lastActiveSliderItem = heroSliderItems[0];
+
+const updateSliderPos = function () {
+  lastActiveSliderItem.classList.remove("active");
+  heroSliderItems[currentSlidePos].classList.add("active");
+  lastActiveSliderItem = heroSliderItems[currentSlidePos];
+};
+
+const slideNext = function () {
+  if (currentSlidePos >= heroSliderItems.length - 1) {
+    currentSlidePos = 0;
+  } else {
+    currentSlidePos++;
+  }
+
+  updateSliderPos();
+};
+
+heroSliderNextBtn.addEventListener("click", slideNext);
+
+const slidePrev = function () {
+  if (currentSlidePos <= 0) {
+    currentSlidePos = heroSliderItems.length - 1;
+  } else {
+    currentSlidePos--;
+  }
+
+  updateSliderPos();
+};
+
+heroSliderPrevBtn.addEventListener("click", slidePrev);
+
+/**
+ * auto slide
+ */
+
+let autoSlideInterval;
+
+const autoSlide = function () {
+  autoSlideInterval = setInterval(function () {
+    slideNext();
+  }, 7000);
+};
+
+addEventOnElements(
+  [heroSliderNextBtn, heroSliderPrevBtn],
+  "mouseover",
+  function () {
+    clearInterval(autoSlideInterval);
+  }
+);
+
+addEventOnElements(
+  [heroSliderNextBtn, heroSliderPrevBtn],
+  "mouseout",
+  autoSlide
+);
+
+window.addEventListener("load", autoSlide);
+
+
+
+  let currentImageIndex = 0;
+
+  // Function to open modal
+  function openModal(index) {
+    modal.style.display = "flex";
+    modalImage.src = registerImages[index];
+    currentImageIndex = index;
+    body.classList.add("modal-open");
+  }
+
+  // Close modal function
+  function closeModalFunc() {
+    modal.style.display = "none";
+    body.classList.remove("modal-open");
+    resetZoom(); // Reset zoom on close
+  }
+
+  // Function to navigate images
+  function showImage(direction) {
+    currentImageIndex += direction;
+    if (currentImageIndex < 0) currentImageIndex = registerImages.length - 1;
+    if (currentImageIndex >= registerImages.length) currentImageIndex = 0;
+    modalImage.src = registerImages[currentImageIndex];
+    resetZoom(); // Reset zoom when switching images
+  }
+
+  // Event listener for the "View All Menu" button
+  if (viewMenuBtn) {
+    viewMenuBtn.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent default anchor behavior
+      openModal(0);
+    });
+  } else {
+    console.error("View All Menu button not found.");
+  }
+
+  // Event listener for close button
+  if (closeModal) {
+    closeModal.addEventListener("click", closeModalFunc);
+  }
+
+  // Event listeners for navigation buttons
+  if (prevBtn && nextBtn) {
+    prevBtn.addEventListener("click", function () {
+      showImage(-1);
+    });
+
+    nextBtn.addEventListener("click", function () {
+      showImage(1);
+    });
+    // Zoom functionality
+    modalImage.addEventListener("click", function (event) {
+      if (!isZoomed) {
+        const offsetX = event.offsetX;
+        const offsetY = event.offsetY;
+        const imgWidth = modalImage.clientWidth;
+        const imgHeight = modalImage.clientHeight;
+
+        const zoomX = (offsetX / imgWidth) * 100;
+        const zoomY = (offsetY / imgHeight) * 100;
+
+        modalImage.style.transformOrigin = ${zoomX}% ${zoomY}%;
+        modalImage.style.transform = "scale(2)"; // Zoom factor
+        isZoomed = true;
+      } else {
+        resetZoom();
+      }
+    });
+
+    // Function to reset zoom
+    function resetZoom() {
+      modalImage.style.transform = "scale(1)";
+      modalImage.style.transformOrigin = "center";
+      isZoomed = false;
+    }
+  }
+
+  // Close modal when clicking outside the image
+  modal.addEventListener("click", function (event) {
+    if (event.target === modal) closeModalFunc();
+  });
+
+  // Close modal on 'Esc' key press
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") closeModalFunc();
+  });
+});
+
+// Counter
+function updateCountdown(eventDate, elementIds) {
+  const now = new Date().getTime();
+  const timeLeft = eventDate - now;
+
+  if (timeLeft <= 0) {
+    document.getElementById(elementIds.container).innerHTML = "Event Started!";
+    return;
+  }
+
+  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+  document.getElementById(elementIds.days).innerText = days;
+  document.getElementById(elementIds.hours).innerText = hours;
+  document.getElementById(elementIds.minutes).innerText = minutes;
+  document.getElementById(elementIds.seconds).innerText = seconds;
+}
+
+function startCountdowns() {
+  const dreamBrushDate = new Date("February 28, 2025 00:00:00").getTime();
+  const aiVerseDate = new Date("March 5, 2025 00:00:00").getTime();
+
+  setInterval(() => {
+    updateCountdown(dreamBrushDate, {
+      container: "countdown-dream",
+      days: "days-dream",
+      hours: "hours-dream",
+      minutes: "minutes-dream",
+      seconds: "seconds-dream",
+    });
+
+    updateCountdown(aiVerseDate, {
+      container: "countdown-ai",
+      days: "days-ai",
+      hours: "hours-ai",
+      minutes: "minutes-ai",
+      seconds: "seconds-ai",
+    });
+  }, 1000);
+}
+
+startCountdowns(); // Start both countdowns
+
+//APPScrips Google Participents Data
+
+async function fetchParticipants() {
+  const apiUrl =
+    "https://script.google.com/macros/s/AKfycbxSBVzYopCV5Tpj6DRnxoiBMVgb759vG8KnM6wKq9RCbCdKfE566rIpfOq-1EaQiBBJVQ/exec"; // Replace with your Web App URL
+
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    const tableBody = document.getElementById("tableBody");
+
+    if (data.length === 0) {
+      tableBody.innerHTML =
+        "<tr><td colspan='2'>No participants yet.</td></tr>";
+    }
+
+    data.forEach((participant) => {
+      let row = `<tr>
+                   <td>${participant.teamLeader}</td>
+                   <td>${participant.teamName}</td>
+                   <td>${participant.enrolledFor}</td>
+                 </tr>`;
+      tableBody.innerHTML += row;
+    });
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
+fetchParticipants(); // Call function to fetch data on page load
+
+/**
+ * PARALLAX EFFECT
+ */
+
+const parallaxItems = document.querySelectorAll("[data-parallax-item]");
+
+let x, y;
+
+window.addEventListener("mousemove", function (event) {
+  x = (event.clientX / window.innerWidth) * 10 - 5;
+  y = (event.clientY / window.innerHeight) * 10 - 5;
+
+  // reverse the number eg. 20 -> -20, -5 -> 5
+  x = x - x * 2;
+  y = y - y * 2;
+
+  for (let i = 0, len = parallaxItems.length; i < len; i++) {
+    x = x * Number(parallaxItems[i].dataset.parallaxSpeed);
+    y = y * Number(parallaxItems[i].dataset.parallaxSpeed);
+    parallaxItems[i].style.transform = translate3d(${x}px, ${y}px, 0px);
+  }
+});
+
+let memberCount = 1;
+let prices = { Dreambrush: 150, AIVERSE: 200 };
+let themes = {
+  Dreambrush: [
+    "Select Theme",
+    "Sustainable Infrastructure",
+    "3D Printing in Construction",
+    "Renewable Energy Systems",
+    "Electric Vehicles & Future Mobility",
+    "Wireless Power Transfer",
+    "Quantum Computing in Electrical Engineering",
+    "AI-Driven Semiconductor Manufacturing",
+    "Others"
+  ],
+  AIVERSE: ["Select Game", "AI TREASURE HUNT", "PUBG VIRTUAL GAMING"],
+};
+
+function updateThemes() {
+  let event = document.getElementById("event").value;
+  let themeSelect = document.getElementById("theme");
+
+  themeSelect.innerHTML = "";
+
+  themes[event].forEach((theme) => {
+    let option = document.createElement("option");
+    option.value = theme;
+    option.innerText = theme;
+    themeSelect.appendChild(option);
+  });
+  updateAmount();
+}
+updateThemes();
+
+function addMember() {
+  if (memberCount >= 4)
+    return alert("Maximum 4 members allowed (including leader).");
+  memberCount++;
+
+  let div = document.createElement("div");
+  div.classList.add("member");
+  div.innerHTML = `
+
+        <button type="button" class="remove-btn" onclick="removeMember(this)">X</button>
+        <h4>Member ${memberCount}</h4>
+        <div class="form-group"><label>Name:</label> <input type="text" name="member_${memberCount}_name" required></div>
+        <div class="form-group"><label>Year:</label> <input type="text" name="member_${memberCount}_year" required></div>
+        <div class="form-group"><label>College:</label> <input type="text" name="member_${memberCount}_college" required></div>
+        <div class="form-group"><label>Mobile No.:</label> <input type="text" name="member_${memberCount}_mobile" required></div>
+        <div class="form-group"><label>Email ID:</label> <input type="email" name="member_${memberCount}_email" required></div>
+        <div class="form-group"><label>Gender:</label>
+        <select name="member_${memberCount}_gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+        </div>
+         `;
+
+  document.getElementById("members").appendChild(div);
+  updateAmount();
+}
+
+function removeMember(button) {
+  button.parentElement.remove();
+  memberCount--;
+
+  let members = document.querySelectorAll(".member");
+  members.forEach((member, index) => {
+    member.querySelector("h4").innerText = Member ${index + 2};
+  });
+
+  updateAmount();
+}
+
+function updateAmount() {
+  let event = document.getElementById("event").value;
+  let totalAmount = memberCount * prices[event];
+
+  // Update the span displaying the amount
+  document.getElementById("totalAmount").innerText = totalAmount;
+
+  // Update the hidden input field value
+  document.getElementById("amountInput").value = totalAmount;
+}
+
+  </script>
+
 </body>
+
 </html>
