@@ -127,7 +127,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Collect all static files here
 
 # Ensure Django collects static files
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Optional, if you have additional static files
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'Registration' , 'static')]  # Optional, if you have additional static files
 
 
 # Default primary key field type
