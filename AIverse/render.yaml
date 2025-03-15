@@ -10,4 +10,5 @@ services:
       pip install -r requirements.txt
       python manage.py migrate
       python manage.py collectstatic --noinput
+    startCommand: gunicorn AIverse.wsgi:application
     staticPublishPath: staticfiles  # This tells Render where to serve static files from
