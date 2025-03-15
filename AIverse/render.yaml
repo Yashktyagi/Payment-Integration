@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: Registration
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: AIverse.settings
+      - key: DEBUG
+        value: False
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py migrate
+      python manage.py collectstatic --noinput
+    staticPublishPath: staticfiles  # This tells Render where to serve static files from
