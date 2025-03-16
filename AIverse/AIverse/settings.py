@@ -76,16 +76,15 @@ WSGI_APPLICATION = 'AIverse.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+import dj_database_url
+import os
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME' : 'MLM_EVENT',
-        'USER': 'postgres',
-        'PASSWORD' : 'jaishriram12',
-        'HOST' : 'localhost',
-    }
+    'default': dj_database_url.config(default='sqlite:///db.sqlite3') # Default to SQLite for local development
 }
+
+if os.getenv('DATABASE_URL'):
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 # Password validation
