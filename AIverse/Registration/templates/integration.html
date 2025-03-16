@@ -47,20 +47,21 @@ ul {
 
 /* Navbar Styles */
 .header {
-    position: absolute; /* Position the header */
+    position: fixed; /* Changed to fixed */
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 1rem 0; /* Add padding to the header */
+    padding: 1rem 0;
+    background-color: rgba(0, 0, 0, 0.8); /* Add a semi-transparent background */
+    transition: background-color 0.3s ease; /* Smooth transition for background */
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem; /* Padding within the navbar */
-
+    padding: 0 2rem;
 }
 
 .navbar .logo {
@@ -88,6 +89,7 @@ ul {
     color: #ff9800; /* Accent color */
     position: relative;
 }
+
 .navbar ul li a:hover::after {
     content: '';
     position: absolute;
@@ -99,11 +101,12 @@ ul {
     transform: scaleX(0);
     transition: transform 0.3s ease-in-out;
 }
+
 .navbar ul li a:hover::after {
     transform: scaleX(1);
 }
 
-
+/* Hero Section */
 .hero {
     display: flex;
     align-items: center;
@@ -115,7 +118,7 @@ ul {
     color: #fff;
     text-align: center;
     transition: background-image 1s ease-in-out;
-    padding-top: 80px; /* Added padding to prevent overlap */
+    padding-top: 80px; /* Adjusted padding to prevent overlap */
 }
 
 .hero::before {
@@ -135,121 +138,148 @@ ul {
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: 3.5rem; /* Increased font size */
     margin-bottom: 1.5rem;
     text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.4);
     font-weight: bold;
+    letter-spacing: 0.1em; /* Added letter spacing */
 }
 
 .hero p {
-    font-size: 1.125rem;
+    font-size: 1.25rem; /* Increased font size */
     margin-bottom: 2.5rem;
     color: #ccc;
+    max-width: 700px; /* Limit paragraph width for better readability */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero a {
     display: inline-block;
-    padding: 0.75rem 1.875rem;
-    background-color: #007bff;
-    color: #fff;
+    padding: 0.85rem 2rem; /* Adjusted button size */
+    background-color: #ff9800; /* Changed button color to accent */
+    color: #000; /* Changed button text color to black */
     border-radius: 0.375rem;
-    transition: background-color 0.2s ease-in-out;
+    font-weight: bold; /* Make button text bold */
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out; /* Smooth transform */
 }
 
 .hero a:hover {
-    background-color: #0056b3;
-    box-shadow: 0 0 10px 2px #007bff;
-    transform: scale(1.05);
+    background-color: #e68a00;
+    box-shadow: 0 0 10px 2px #ff9800; /* Changed shadow color */
+    transform: scale(1.08); /* Increased scale on hover */
 }
+
 .hero h1:hover {
     animation: bounce 0.8s;
 }
+
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateY(0);
     }
+
     40% {
-        transform: translateY(-10px);
+        transform: translateY(-15px); /* Increased bounce height */
     }
+
     60% {
-        transform: translateY(-5px);
+        transform: translateY(-8px); /* Increased bounce height */
     }
 }
 
+/* Fade-in animation */
+.fade-in {
+    animation: fadeIn 1s;
+}
 
-    /* Fade-in animation */
-    .fade-in {
-        animation: fadeIn 1s;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
     }
 
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+    to {
+        opacity: 1;
     }
+}
 
 /* Section Styles */
 section {
-    padding: 5rem 1.25rem;
+    padding: 6rem 2rem; /* Increased padding */
 }
 
 .section-title {
-    font-size: 2.25rem;
-    margin-bottom: 2.5rem;
+    font-size: 2.75rem; /* Increased font size */
+    margin-bottom: 3rem; /* Increased margin */
     text-align: center;
     position: relative;
     color: #fff; /* Section title color white */
+    letter-spacing: 0.05em; /* Added letter-spacing */
 }
 
 .section-title::after {
     content: '';
     display: block;
-    width: 3.75rem;
-    height: 0.1875rem;
-    background-color: #007bff;
-    margin: 1.25rem auto 0;
+    width: 4.5rem; /* Increased width */
+    height: 0.25rem; /* Increased height */
+    background-color: #ff9800; /* Changed color to accent */
+    margin: 1.5rem auto 0; /* Increased margin */
 }
-/* Section Styles */
+
+/* Our Committees Section */
 .our-committees {
     margin-top: 4rem;
-    padding: 2rem;
-    background-color: black;
-    border-radius: 10px;
+    padding: 3rem 2rem; /* Increased padding */
+    background-color: #121212; /* Darker background */
+    border-radius: 1rem; /* Increased border-radius */
     text-align: center;
     position: relative;
-    padding-bottom: 25rem; /* Add padding-bottom */
+    overflow: hidden; /* Hide overflowing elements */
 }
+
 .section-title {
     color: #fff;
-    font-size: 2rem;
-    margin-bottom: 0.5rem; /* Reduced margin */
+    font-size: 2.5rem; /* Increased font size */
+    margin-bottom: 0.75rem; /* Reduced margin */
 }
 
 .section-subtitle {
-    color: #fff;
-    font-size: 1rem;
-    margin: 0 auto 1.5rem; /* Center and add bottom margin */
-    max-width: 600px; /* Limit width */
+    color: #ccc;
+    font-size: 1.1rem; /* Increased font size */
+    margin: 0 auto 2rem;
+    max-width: 700px; /* Increased max-width */
+    line-height: 1.8; /* Adjusted line-height */
 }
 
 .separator {
-    width: 50px;
-    height: 2px;
-    background-color: #007bff;
-    margin: 1rem auto 2rem;
+    width: 60px; /* Increased width */
+    height: 3px; /* Increased height */
+    background-color: #ff9800; /* Changed color to accent */
+    margin: 1.25rem auto 2.5rem; /* Adjusted margins */
 }
 
-/* Committee Container Styles */
+/* Committee Container */
 .committee-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative; /* Needed for positioning */
+    position: relative;
+    padding-bottom: 15rem; /* Adjusted padding */
 }
 
 /* Committee Styles */
 .committee {
     text-align: center;
-    position: absolute; /* Absolute positioning for layout */
+    position: absolute;
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+.committee:hover {
+    transform: scale(1.05); /* Slight scale up on hover */
 }
 
 .committee img:hover {
@@ -258,48 +288,59 @@ section {
 }
 
 .committee-title:hover {
-    text-shadow: 0 0 10px #007bff;
+    text-shadow: 0 0 10px #ff9800; /* Changed shadow color */
 }
-
 
 /* Positioning Committees */
 .sac-committee {
-    left: 20%; /* Adjust as needed */
-    top: 100%; /* Adjust as needed */
+    left: 15%; /* Adjusted positioning */
+    top: 50%;
     transform: translate(-50%, -50%);
 }
 
 .mlm-committee {
-    left: 45%; /* Center */
-    top: 100%; /* Adjust as needed */
-    transform: translateX(-50%);
+    left: 50%; /* Center */
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .jbiet-committee {
-    left: 75%; /* Adjust as needed */
-    top: 80%; /* Adjust as needed */
+    left: 85%; /* Adjusted positioning */
+    top: 50%;
     transform: translate(-50%, -50%);
 }
 
 .committee img {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem; /* Adjusted margin */
+    border-radius: 50%; /* Make images circular */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Added shadow */
 }
+
 .committee img:active {
     animation: ripple 0.6s;
 }
+
 @keyframes ripple {
-    0% { box-shadow: 0 0 5px 2px #007bff; }
-    100% { box-shadow: 0 0 50px 25px transparent; }
+    0% {
+        box-shadow: 0 0 5px 2px #ff9800; /* Changed shadow color */
+    }
+
+    100% {
+        box-shadow: 0 0 50px 25px transparent;
+    }
 }
+
 .committee img:hover {
     transform: perspective(600px) rotateY(15deg) scale(1.1);
     transition: transform 0.5s ease;
 }
+
 @keyframes slideFromLeft {
     from {
         transform: translateX(-100%);
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;
@@ -311,6 +352,7 @@ section {
         transform: translateX(100%);
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;
@@ -322,16 +364,19 @@ section {
         transform: translateY(100%);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
     }
 }
+
 @keyframes slideToLeft {
     from {
         transform: translateX(0);
         opacity: 1;
     }
+
     to {
         transform: translateX(-100%);
         opacity: 0;
@@ -343,6 +388,7 @@ section {
         transform: translateX(0);
         opacity: 1;
     }
+
     to {
         transform: translateX(100%);
         opacity: 0;
@@ -354,6 +400,7 @@ section {
         transform: translateY(0);
         opacity: 1;
     }
+
     to {
         transform: translateY(100%);
         opacity: 0;
@@ -364,25 +411,24 @@ section {
 .mlm-committee,
 .jbiet-committee {
     opacity: 0; /* Initially hidden */
-    transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Added transform transition */
 }
 
-
-
 .large-image {
-    width: 250px;
-    height: 250px;
+    width: 200px; /* Adjusted size */
+    height: 200px; /* Adjusted size */
 }
 
 .small-image {
-    width: 150px;
-    height: 150px;
+    width: 120px; /* Adjusted size */
+    height: 120px; /* Adjusted size */
 }
 
 .committee-title {
     color: #fff;
     font-weight: bold;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.5rem; /* Adjusted margin */
+    font-size: 1.2rem; /* Increased font size */
 }
 
 .supporting-text {
@@ -390,154 +436,173 @@ section {
     font-size: 1rem;
 }
 
+/* Games Section */
 .games,
 .contact,
 .register {
-    background-color: black; /* Darker section background */
-    border-radius: 0.5rem;
-    box-shadow: 0 0.25rem 0.5rem rgba(255, 255, 255, 0.05); /* Shadow with white */
+    background-color: #121212; /* Darker section background */
+    border-radius: 0.75rem; /* Increased border-radius */
+    box-shadow: 0 0.35rem 0.75rem rgba(255, 255, 255, 0.07); /* Increased shadow */
+    margin-top: 5rem; /* Increased margin */
 }
 
 .games-content,
 .contact-content {
-    max-width: 50rem;
+    max-width: 60rem; /* Increased max-width */
     margin: 0 auto;
     text-align: center;
-    padding: 1.5rem;
+    padding: 2rem; /* Increased padding */
 }
-
 
 .games-content p,
 .contact-content p {
-    font-size: 1rem;
-    line-height: 1.7;
-    margin-bottom: 1.25rem;
+    font-size: 1.1rem; /* Increased font-size */
+    line-height: 1.8; /* Adjusted line-height */
+    margin-bottom: 1.5rem; /* Increased margin */
     color: #ccc; /* Lighter paragraph color */
 }
+
 .contact-content p:hover i {
     animation: spin 1s linear infinite;
 }
+
 @keyframes spin {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
 }
 
-
 /* Games Section Styles */
 .games {
-    margin-top: 4rem;
-    padding: 2rem;
-    background-color: black;
-    border-radius: 10px;
+    padding: 3rem 2rem; /* Increased padding */
 }
 
 .games .section-title {
     color: #fff;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem; /* Increased margin */
 }
 
 /* Games Container Styles */
 .games-container {
     display: flex;
-    justify-content: space-between; /* Distribute items evenly */
-    width: 100%; /* Cover full width */
+    justify-content: space-between;
+    /* Distribute items evenly */
+    width: 100%;
+    /* Cover full width */
+    gap: 2rem; /* Added gap between game cards */
 }
 
 /* Game Card Styles */
 .game-card {
-    background-color: #222; /* Slightly darker background */
-    border-radius: 5px;
-    padding: 1rem;
+    background-color: #222;
+    /* Slightly darker background */
+    border-radius: 0.75rem; /* Increased border-radius */
+    padding: 1.5rem; /* Increased padding */
     text-align: center;
-    width: 30%; /* Divide width approximately for 3 items */
-    margin: 0 1rem; /* Add some horizontal spacing */
-}
-
-.game-card:first-child {
-    margin-left: 0; /* Remove left margin for the first card */
-}
-
-.game-card:last-child {
-    margin-right: 0; /* Remove right margin for the last card */
+    width: 30%;
+    /* Divide width approximately for 3 items */
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
 }
 
 .game-card:hover {
-    transform: scale(1.03);
-    transition: transform 0.3s ease;
+    transform: scale(1.05); /* Slight scale up on hover */
 }
+
 .game-image:hover {
     transform: scale(1.1);
     transition: transform 0.3s ease;
 }
+
 .game-card {
     perspective: 1000px;
 }
+
 .game-card:hover .game-card-inner {
     transform: rotateY(180deg);
 }
+
 .game-card-inner {
     transform-style: preserve-3d;
     transition: transform 0.6s;
 }
-.game-card-front, .game-card-back {
+
+.game-card-front,
+.game-card-back {
     backface-visibility: hidden;
     position: absolute;
 }
+
 .game-card-back {
     transform: rotateY(180deg);
 }
+
 .game-title {
     position: relative;
     animation: pulseGlow 1.5s infinite;
 }
-@keyframes pulseGlow {
-    0% { text-shadow: 0 0 10px #007bff; }
-    50% { text-shadow: 0 0 20px #007bff; }
-    100% { text-shadow: 0 0 10px #007bff; }
-}
 
+@keyframes pulseGlow {
+    0% {
+        text-shadow: 0 0 10px #ff9800; /* Changed shadow color */
+    }
+
+    50% {
+        text-shadow: 0 0 20px #ff9800; /* Changed shadow color */
+    }
+
+    100% {
+        text-shadow: 0 0 10px #ff9800;
+    }
+}
 
 .game-title {
     color: #fff;
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
+    font-size: 1.35rem; /* Increased font size */
+    margin-bottom: 1.25rem; /* Increased margin */
 }
 
 .game-image {
-    width: 100%; /* Make image responsive within card */
-    height: 50vh;
-    border-radius: 5px;
-    margin-bottom: 1rem;
+    width: 100%;
+    /* Make image responsive within card */
+    height: 40vh; /* Adjusted height */
+    border-radius: 0.75rem; /* Increased border-radius */
+    margin-bottom: 1.25rem; /* Increased margin */
+    object-fit: cover; /* Ensure images cover the area */
 }
 
 .game-description {
     color: #ccc;
-    font-size: 0.9rem;
-    text-align: left; /* Align text to the left */
+    font-size: 1rem;
+    text-align: left;
+    /* Align text to the left */
 }
 
 .game-description strong {
-    font-weight: bold; /* Make strong elements bold */
-    display: block; /* Display each strong element on a new line */
-    margin-bottom: 0.25rem; /* Add spacing below each label */
+    font-weight:bold;
+    display: block;
+    /* Display each strong element on a new line */
+    margin-bottom: 0.35rem;
+    /* Add spacing below each label */
 }
 
 .game-description br {
-    display: block; /* Ensure br tags create line breaks */
+    display: block;
+    /* Ensure br tags create line breaks */
 }
 
 /* Footer Styles */
 footer {
-    background-color:black; /* Darker footer background */
+    background-color: #121212;
+    /* Darker footer background */
     color: #fff;
     text-align: center;
-    padding: 1.25rem;
-    font-size: 0.875rem;
+    padding: 1.5rem; /* Increased padding */
+    font-size: 0.9rem; /* Increased font size */
 }
 
 footer p {
@@ -545,7 +610,7 @@ footer p {
 }
 
 footer a {
-    color: #007bff;
+    color: #ff9800; /* Changed color to accent */
     transition: color 0.2s;
 }
 
@@ -579,16 +644,48 @@ footer a {
         font-size: 2rem;
     }
 
-    .games-grid {
-        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    .games-container {
+        flex-direction: column; /* Stack game cards vertically */
+        align-items: center; /* Center items horizontally */
+        gap: 1.5rem; /* Add gap between stacked cards */
+    }
+
+    .game-card {
+        width: 90%; /* Take up more width on smaller screens */
+        margin: 0; /* Reset margins */
+    }
+
+    .committee-container {
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 2rem; /* Reset padding */
+    }
+
+    .committee {
+        position: static; /* Remove absolute positioning */
+        transform: none; /* Reset transform */
+        margin-bottom: 2rem; /* Add spacing between committees */
+    }
+
+    .sac-committee,
+    .mlm-committee,
+    .jbiet-committee {
+        left: auto;
+        top: auto;
+    }
+
+    .large-image,
+    .small-image {
+        width: 150px; /* Adjusted size for smaller screens */
+        height: 150px; /* Adjusted size for smaller screens */
     }
 }
 
+/* Register Process Section */
+.register-process {
+    margin-top: 10px;
+}
 
-/* Parent container styling */
-.register-process{
- margin-top: 10px;
- }
 .register-process-container {
     max-width: 800px;
     margin: 0 auto;
@@ -607,20 +704,23 @@ footer a {
     left: 50%;
     width: 4px;
     height: 100%;
-    background: #007bff; /* Blue vertical line */
+    background: #007bff;
+    /* Blue vertical line */
     transform: translateX(-50%);
     z-index: 0;
 }
+
 .timeline-item {
     opacity: 0;
     transform: translateY(50px);
-    transition: opacity 0.6s, transform 0.6s;
+    transition: opacity 0.6s,
+    transform 0.6s;
 }
+
 .timeline-item.visible {
     opacity: 1;
     transform: translateY(0);
 }
-
 
 /* Timeline items */
 .timeline-item {
@@ -638,29 +738,32 @@ footer a {
 
 /* Step card */
 .register-card {
-    background-color: #222; /* Dark background for step boxes */
+    background-color: #222;
+    /* Dark background for step boxes */
     border-radius: 10px;
     padding: 20px;
     max-width: 300px;
     z-index: 1;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
     text-align: center;
+    transition: transform 0.6s ease-in-out; /* Smooth transition */
+}
+
+.register-card:hover {
+    transform: scale(1.05); /* Slight scale up on hover */
 }
 
 .register-card h3 {
     font-size: 18px;
     margin-bottom: 10px;
-    color: #fff; /* White step title */
+    color: #fff;
+    /* White step title */
 }
 
 .register-card p {
     font-size: 14px;
-    color: #ccc; /* Grey description text */
-}
-
-.register-card:hover {
-    transform: rotateY(180deg);
-    transition: transform 0.6s ease;
+    color: #ccc;
+    /* Grey description text */
 }
 
 /* Connecting arrows */
@@ -669,19 +772,23 @@ footer a {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(90deg); /* Arrow rotation */
+    transform: translate(-50%, -50%) rotate(90deg);
+    /* Arrow rotation */
     font-size: 24px;
-    color: #007bff; /* Blue arrow color */
+    color: #007bff;
+    /* Blue arrow color */
     z-index: 0;
 }
 
 .timeline-item:last-child::after {
-    display: none; /* Remove arrow for last item */
+    display: none;
+    /* Remove arrow for last item */
 }
 
 /* Button styling */
 .btn.btn-primary {
-    background-color: #007bff; /* Button background */
+    background-color: #007bff;
+    /* Button background */
     color: #fff;
     text-transform: uppercase;
     border-radius: 8px;
@@ -690,41 +797,51 @@ footer a {
 }
 
 .btn.btn-primary:hover {
-    background-color: #0056b3; /* Darker hover effect */
+    background-color: #0056b3;
+    /* Darker hover effect */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
-.section-subtitle{
-        text-align:center;
-        }
+
+.section-subtitle {
+    text-align: center;
+}
+
 .section-register .timeline-item:last-of-type {
-    margin-bottom: -5; /* Prevent extra spacing below the "Registrations" link */
+    margin-bottom: -5;
+    /* Prevent extra spacing below the "Registrations" link */
 }
 
 /* Modal Styling (No Changes) */
 .modal {
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
     position: fixed;
     z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Background overlay */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Background overlay */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .modal-content {
-    background-color: #1c1c1c; /* Dark background */
+    background-color: #1c1c1c;
+    /* Dark background */
     color: #fff;
     width: 90%;
     max-width: 500px;
-    max-height: 80%; /* Fixed height */
-    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 80%;
+    /* Fixed height */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
     border-radius: 15px;
     padding: 20px;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+    /* Subtle shadow */
     position: relative;
     text-align: left;
     animation: slideIn 0.3s ease-in-out;
@@ -735,12 +852,14 @@ footer a {
 }
 
 .modal-content::-webkit-scrollbar-thumb {
-    background: #444; /* Custom scrollbar styling */
+    background: #444;
+    /* Custom scrollbar styling */
     border-radius: 4px;
 }
 
 .modal-content::-webkit-scrollbar-thumb:hover {
-    background: #666; /* Highlighted scrollbar on hover */
+    background: #666;
+    /* Highlighted scrollbar on hover */
 }
 
 /* Close Button */
@@ -751,7 +870,8 @@ footer a {
     background: none;
     border: none;
     font-size: 24px;
-    color: #ff9800; /* Accent color */
+    color: #ff9800;
+    /* Accent color */
     cursor: pointer;
     transition: color 0.2s;
 }
@@ -768,7 +888,8 @@ footer a {
 .modal-content label {
     display: block;
     font-size: 1rem;
-    color: #dcdcdc; /* Subtle text color */
+    color: #dcdcdc;
+    /* Subtle text color */
     margin-bottom: 8px;
     font-weight: bold;
 }
@@ -778,8 +899,10 @@ footer a {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    background-color: #2a2a2a; /* Darker background */
-    border: 1px solid #444; /* Subtle border */
+    background-color: #2a2a2a;
+    /* Darker background */
+    border: 1px solid #444;
+    /* Subtle border */
     border-radius: 5px;
     font-size: 1rem;
     color: #fff;
@@ -789,15 +912,19 @@ footer a {
 .modal-content input:focus,
 .modal-content select:focus {
     outline: none;
-    border-color: #ff9800; /* Highlight on focus */
-    box-shadow: 0 0 5px rgba(255, 152, 0, 0.5); /* Glow effect */
+    border-color: #ff9800;
+    /* Highlight on focus */
+    box-shadow: 0 0 5px rgba(255, 152, 0, 0.5);
+    /* Glow effect */
 }
 
 /* Button Inside Form */
 .modal-content button {
     display: block;
-    background-color: #ff9800; /* Accent button color */
-    color: #1c1c1c; /* Dark text */
+    background-color: #ff9800;
+    /* Accent button color */
+    color: #1c1c1c;
+    /* Dark text */
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -807,12 +934,14 @@ footer a {
     margin-top: 15px;
     cursor: pointer;
     width: 100%;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .modal-content button:hover {
     background-color: #e68a00;
-    box-shadow: 0px 4px 15px rgba(255, 152, 0, 0.5); /* Hover shadow */
+    box-shadow: 0px 4px 15px rgba(255, 152, 0, 0.5);
+    /* Hover shadow */
 }
 
 
